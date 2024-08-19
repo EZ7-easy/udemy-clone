@@ -13,3 +13,10 @@ export function Localization(lng: string) {
 	if (lng === 'tr') return trTR
 	if (lng === 'uz') return uzUZ
 }
+
+export function getCurrentLng(lng: string) {
+	if (lng === 'en') return 'English'
+	if (lng === 'ru') return 'Русский'
+	if (lng === 'tr') return 'Türkçe'
+	if (lng === 'uz') return 'O`zbek'
+}
