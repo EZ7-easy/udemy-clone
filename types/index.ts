@@ -41,7 +41,7 @@ export interface IAuthor {
 
 export interface ICategoryAndTags {
 	name: string
-	// slug: string
+	slug: string
 	blogs: IBlog[]
 }
 
