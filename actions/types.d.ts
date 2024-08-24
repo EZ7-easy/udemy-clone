@@ -10,6 +10,7 @@ export interface ICreateCourse {
 	language: string
 	oldPrice: number
 	currentPrice: number
+	previewImage: string
 }
 
 export interface ICreateUser {

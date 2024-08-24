@@ -1,5 +1,7 @@
 'use client'
 
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+
 import { courseSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -25,23 +27,57 @@ import { courseCategory, courseLanguage, courseLevels } from '@/constants'
 import { Button } from '../ui/button'
 import { createCourse } from '@/actions/course.action'
 import { toast } from 'sonner'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
+import { getDownloadURL, uploadString } from 'firebase/storage'
+import { courseStorageRefs } from '@/lib/firebase'
+import { ImageDown } from 'lucide-react'
+import Image from 'next/image'
 
 function CourseFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
+	const [previewImage, setPreviewImage] = useState('')
+	const [open, setOpen] = useState(false)
 
 	const form = useForm<z.infer<typeof courseSchema>>({
 		resolver: zodResolver(courseSchema),
 		defaultValues: defaultVal,
 	})
 
+	function onUpload(e: ChangeEvent<HTMLInputElement>) {
+		const files = e.target.files
+		if (!files) return null
+		const file = files[0]
+
+		const reader = new FileReader()
+
+		reader.readAsDataURL(file)
+		reader.onload = e => {
+			const result = e.target?.result as string
+			const promise = uploadString(courseStorageRefs, result, 'data_url').then(
+				() => {
+					getDownloadURL(courseStorageRefs).then(url => setPreviewImage(url))
+				}
+			)
+
+			toast.promise(promise, {
+				loading: 'Uploading...',
+				success: 'Successfully uploaded!',
+				error: 'Something went wrong!',
+			})
+		}
+	}
+
 	function onSubmit(values: z.infer<typeof courseSchema>) {
+		if (!previewImage) {
+			return toast.error('Please upload image')
+		}
 		setIsLoading(true)
 		const { oldPrice, currentPrice } = values
 		const promise = createCourse({
 			...values,
 			oldPrice: +oldPrice,
 			currentPrice: +currentPrice,
+			previewImage,
 		})
 			.then(() => form.reset())
 			.finally(() => setIsLoading(false))
@@ -54,206 +90,22 @@ function CourseFieldsForm() {
 	}
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
-				<FormField
-					control={form.control}
-					name='title'
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>
-								Course title<span className='text-red-500'>*</span>
-							</FormLabel>
-							<FormControl>
-								<Input
-									{...field}
-									className='bg-secondary'
-									placeholder='Learn ReactJS from scratch'
-									disabled={isLoading}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				<FormField
-					control={form.control}
-					name='description'
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>
-								Short description<span className='text-red-500'>*</span>
-							</FormLabel>
-							<FormControl>
-								<Textarea
-									{...field}
-									className='h-44 bg-secondary'
-									placeholder='Description'
-									disabled={isLoading}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				<div className='grid grid-cols-2 gap-4'>
+		<>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
 					<FormField
 						control={form.control}
-						name='learning'
+						name='title'
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>
-									What will students learn in your course
-									<span className='text-red-500'>*</span>
-								</FormLabel>
-								<FormControl>
-									<Textarea
-										{...field}
-										className='bg-secondary'
-										disabled={isLoading}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name='requirements'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>
-									Requirements
-									<span className='text-red-500'>*</span>
-								</FormLabel>
-								<FormControl>
-									<Textarea
-										{...field}
-										className='bg-secondary'
-										disabled={isLoading}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				</div>
-
-				<div className='grid grid-cols-3 gap-4'>
-					<FormField
-						control={form.control}
-						name='level'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>
-									level
-									<span className='text-red-500'>*</span>
-								</FormLabel>
-								<FormControl>
-									<Select
-										defaultValue={field.value}
-										onValueChange={field.onChange}
-										disabled={isLoading}
-									>
-										<SelectTrigger className='w-full bg-secondary'>
-											<SelectValue placeholder='Select' />
-										</SelectTrigger>
-										<SelectContent>
-											{courseLevels.map(item => (
-												<SelectItem key={item} value={item}>
-													{item}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name='category'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>
-									Category
-									<span className='text-red-500'>*</span>
-								</FormLabel>
-								<FormControl>
-									<Select
-										defaultValue={field.value}
-										onValueChange={field.onChange}
-										disabled={isLoading}
-									>
-										<SelectTrigger className='w-full bg-secondary'>
-											<SelectValue placeholder='Select' />
-										</SelectTrigger>
-										<SelectContent>
-											{courseCategory.map(item => (
-												<SelectItem key={item} value={item}>
-													{item}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name='language'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>
-									Language
-									<span className='text-red-500'>*</span>
-								</FormLabel>
-								<FormControl>
-									<Select
-										defaultValue={field.value}
-										onValueChange={field.onChange}
-										disabled={isLoading}
-									>
-										<SelectTrigger className='w-full bg-secondary'>
-											<SelectValue placeholder='Select' />
-										</SelectTrigger>
-										<SelectContent>
-											{courseLanguage.map(item => (
-												<SelectItem key={item} value={item}>
-													{item}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				</div>
-
-				<div className='grid grid-cols-2 gap-4'>
-					<FormField
-						control={form.control}
-						name='oldPrice'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>
-									Old price<span className='text-red-500'>*</span>
+									Course title<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
 									<Input
 										{...field}
 										className='bg-secondary'
-										type='number'
+										placeholder='Learn ReactJS from scratch'
 										disabled={isLoading}
 									/>
 								</FormControl>
@@ -264,17 +116,17 @@ function CourseFieldsForm() {
 
 					<FormField
 						control={form.control}
-						name='currentPrice'
+						name='description'
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>
-									Current price<span className='text-red-500'>*</span>
+									Short description<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
-									<Input
+									<Textarea
 										{...field}
-										className='bg-secondary'
-										type='number'
+										className='h-44 bg-secondary'
+										placeholder='Description'
 										disabled={isLoading}
 									/>
 								</FormControl>
@@ -282,24 +134,254 @@ function CourseFieldsForm() {
 							</FormItem>
 						)}
 					/>
-				</div>
 
-				<div className='flex justify-end gap-4'>
+					<div className='grid grid-cols-2 gap-4'>
+						<FormField
+							control={form.control}
+							name='learning'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										What will students learn in your course
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Textarea
+											{...field}
+											className='bg-secondary'
+											disabled={isLoading}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='requirements'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Requirements
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Textarea
+											{...field}
+											className='bg-secondary'
+											disabled={isLoading}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+
+					<div className='grid grid-cols-3 gap-4'>
+						<FormField
+							control={form.control}
+							name='level'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										level
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Select
+											defaultValue={field.value}
+											onValueChange={field.onChange}
+											disabled={isLoading}
+										>
+											<SelectTrigger className='w-full bg-secondary'>
+												<SelectValue placeholder='Select' />
+											</SelectTrigger>
+											<SelectContent>
+												{courseLevels.map(item => (
+													<SelectItem key={item} value={item}>
+														{item}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='category'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Category
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Select
+											defaultValue={field.value}
+											onValueChange={field.onChange}
+											disabled={isLoading}
+										>
+											<SelectTrigger className='w-full bg-secondary'>
+												<SelectValue placeholder='Select' />
+											</SelectTrigger>
+											<SelectContent>
+												{courseCategory.map(item => (
+													<SelectItem key={item} value={item}>
+														{item}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='language'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Language
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Select
+											defaultValue={field.value}
+											onValueChange={field.onChange}
+											disabled={isLoading}
+										>
+											<SelectTrigger className='w-full bg-secondary'>
+												<SelectValue placeholder='Select' />
+											</SelectTrigger>
+											<SelectContent>
+												{courseLanguage.map(item => (
+													<SelectItem key={item} value={item}>
+														{item}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='oldPrice'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Old price<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											className='bg-secondary'
+											type='number'
+											disabled={isLoading}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='currentPrice'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Current price<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											className='bg-secondary'
+											type='number'
+											disabled={isLoading}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormItem>
+							<FormLabel>
+								Preview image<span className='text-red-500'>*</span>
+							</FormLabel>
+							<Input
+								className='bg-secondary'
+								type='file'
+								disabled={isLoading}
+								onChange={onUpload}
+							/>
+						</FormItem>
+					</div>
+
+					<div className='flex justify-end gap-4'>
+						<Button
+							type='button'
+							size={'lg'}
+							variant={'destructive'}
+							onClick={() => form.reset()}
+							disabled={isLoading}
+						>
+							Clear
+						</Button>
+						<Button type='submit' size={'lg'} disabled={isLoading}>
+							Submit
+						</Button>
+						{previewImage && (
+							<Button
+								type='button'
+								size='lg'
+								variant={'outline'}
+								onClick={() => setOpen(true)}
+							>
+								<span>Image</span>
+								<ImageDown className='ml-2 size-4' />
+							</Button>
+						)}
+					</div>
+				</form>
+			</Form>
+
+			<Dialog open={open} onOpenChange={setOpen}>
+				<DialogContent>
+					<div className='relative h-72'>
+						<Image
+							src={previewImage}
+							alt='preview-image'
+							fill
+							className='object-cover'
+						/>
+					</div>
 					<Button
-						type='button'
-						size={'lg'}
+						className='w-fit'
 						variant={'destructive'}
-						onClick={() => form.reset()}
-						disabled={isLoading}
+						onClick={() => {
+							setPreviewImage('')
+							setOpen(false)
+						}}
 					>
-						Clear
+						Remove
 					</Button>
-					<Button type='submit' size={'lg'} disabled={isLoading}>
-						Submit
-					</Button>
-				</div>
-			</form>
-		</Form>
+				</DialogContent>
+			</Dialog>
+		</>
 	)
 }
 
