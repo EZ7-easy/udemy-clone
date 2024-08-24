@@ -23,15 +23,34 @@ import {
 } from '../ui/select'
 import { courseCategory, courseLanguage, courseLevels } from '@/constants'
 import { Button } from '../ui/button'
+import { createCourse } from '@/actions/course.action'
+import { toast } from 'sonner'
+import { useState } from 'react'
 
 function CourseFieldsForm() {
+	const [isLoading, setIsLoading] = useState(false)
+
 	const form = useForm<z.infer<typeof courseSchema>>({
 		resolver: zodResolver(courseSchema),
 		defaultValues: defaultVal,
 	})
 
 	function onSubmit(values: z.infer<typeof courseSchema>) {
-		console.log(values)
+		setIsLoading(true)
+		const { oldPrice, currentPrice } = values
+		const promise = createCourse({
+			...values,
+			oldPrice: +oldPrice,
+			currentPrice: +currentPrice,
+		})
+			.then(() => form.reset())
+			.finally(() => setIsLoading(false))
+
+		toast.promise(promise, {
+			loading: 'Loading...',
+			success: 'Successfully created!',
+			error: 'Something went wrong!',
+		})
 	}
 
 	return (
@@ -50,6 +69,7 @@ function CourseFieldsForm() {
 									{...field}
 									className='bg-secondary'
 									placeholder='Learn ReactJS from scratch'
+									disabled={isLoading}
 								/>
 							</FormControl>
 							<FormMessage />
@@ -70,6 +90,7 @@ function CourseFieldsForm() {
 									{...field}
 									className='h-44 bg-secondary'
 									placeholder='Description'
+									disabled={isLoading}
 								/>
 							</FormControl>
 							<FormMessage />
@@ -88,7 +109,11 @@ function CourseFieldsForm() {
 									<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
-									<Textarea {...field} className='bg-secondary' />
+									<Textarea
+										{...field}
+										className='bg-secondary'
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -105,7 +130,11 @@ function CourseFieldsForm() {
 									<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
-									<Textarea {...field} className='bg-secondary' />
+									<Textarea
+										{...field}
+										className='bg-secondary'
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -127,6 +156,7 @@ function CourseFieldsForm() {
 									<Select
 										defaultValue={field.value}
 										onValueChange={field.onChange}
+										disabled={isLoading}
 									>
 										<SelectTrigger className='w-full bg-secondary'>
 											<SelectValue placeholder='Select' />
@@ -158,6 +188,7 @@ function CourseFieldsForm() {
 									<Select
 										defaultValue={field.value}
 										onValueChange={field.onChange}
+										disabled={isLoading}
 									>
 										<SelectTrigger className='w-full bg-secondary'>
 											<SelectValue placeholder='Select' />
@@ -189,6 +220,7 @@ function CourseFieldsForm() {
 									<Select
 										defaultValue={field.value}
 										onValueChange={field.onChange}
+										disabled={isLoading}
 									>
 										<SelectTrigger className='w-full bg-secondary'>
 											<SelectValue placeholder='Select' />
@@ -218,7 +250,12 @@ function CourseFieldsForm() {
 									Old price<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
-									<Input {...field} className='bg-secondary' type='number' />
+									<Input
+										{...field}
+										className='bg-secondary'
+										type='number'
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -234,7 +271,12 @@ function CourseFieldsForm() {
 									Current price<span className='text-red-500'>*</span>
 								</FormLabel>
 								<FormControl>
-									<Input {...field} className='bg-secondary' type='number' />
+									<Input
+										{...field}
+										className='bg-secondary'
+										type='number'
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -248,10 +290,11 @@ function CourseFieldsForm() {
 						size={'lg'}
 						variant={'destructive'}
 						onClick={() => form.reset()}
+						disabled={isLoading}
 					>
 						Clear
 					</Button>
-					<Button type='submit' size={'lg'}>
+					<Button type='submit' size={'lg'} disabled={isLoading}>
 						Submit
 					</Button>
 				</div>
