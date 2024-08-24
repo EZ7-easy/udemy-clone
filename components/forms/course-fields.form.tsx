@@ -32,11 +32,14 @@ import { getDownloadURL, uploadString } from 'firebase/storage'
 import { courseStorageRefs } from '@/lib/firebase'
 import { ImageDown } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 function CourseFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [previewImage, setPreviewImage] = useState('')
 	const [open, setOpen] = useState(false)
+
+	const router = useRouter()
 
 	const form = useForm<z.infer<typeof courseSchema>>({
 		resolver: zodResolver(courseSchema),
@@ -79,7 +82,10 @@ function CourseFieldsForm() {
 			currentPrice: +currentPrice,
 			previewImage,
 		})
-			.then(() => form.reset())
+			.then(() => {
+				form.reset()
+				router.push('/en/instructor/my-courses')
+			})
 			.finally(() => setIsLoading(false))
 
 		toast.promise(promise, {
