@@ -1,4 +1,4 @@
-import { IUser } from '@/app.types'
+// import { IUser } from '@/app.types'
 
 export interface ICreateCourse {
 	title: string
@@ -21,8 +21,11 @@ export interface ICreateUser {
 }
 export interface IUpdateUser {
 	clerkId: string
-	path?: string
-	updatedData: Partial<IUser>
+	updatedData: {
+		fullName: string
+		email: string
+		picture: string
+	}
 }
 
 export interface IUpdateSection {
