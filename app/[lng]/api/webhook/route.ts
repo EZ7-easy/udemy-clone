@@ -9,7 +9,9 @@ export async function POST(req: Request) {
 	const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET
 
 	if (!WEBHOOK_SECRET) {
-		throw new Error('Please add the NEXT_CLERK_WEBHOOK_SECRET env variable')
+		throw new Error(
+			'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local'
+		)
 	}
 
 	const headerPayload = headers()

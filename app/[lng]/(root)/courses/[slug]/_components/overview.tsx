@@ -1,7 +1,15 @@
 'use client'
 
+import ReviewCard from '@/components/cards/review.card'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/components/ui/accordion'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 import {
 	BadgeCheck,
 	CalendarRange,
@@ -10,17 +18,9 @@ import {
 	MonitorPlay,
 	Star,
 } from 'lucide-react'
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from '@/components/ui/accordion'
-import ReviewCard from '@/components/cards/review.card'
-import { Button } from '@/components/ui/button'
 
 function Overview() {
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<>
@@ -30,8 +30,8 @@ function Overview() {
 				</h2>
 
 				<div className='mt-5 grid grid-cols-1 gap-4 md:grid-cols-2'>
-					{learn.split(',').map(item => (
-						<div className='flex gap-2' key={item}>
+					{learn.split(', ').map(item => (
+						<div className={'flex gap-2'} key={item}>
 							<BadgeCheck className='size-5 text-blue-500' />
 							<p className='flex-1'>{item}</p>
 						</div>
@@ -46,7 +46,7 @@ function Overview() {
 
 				<div className='mt-2 flex flex-row flex-wrap gap-8'>
 					<div className='flex flex-col'>
-						<ListOrdered className='size-10' />
+						<ListOrdered className='size-10 ' />
 						<p className='font-space-grotesk text-xl font-bold'>
 							{t('numberOfModules')}
 						</p>
@@ -54,15 +54,15 @@ function Overview() {
 					</div>
 
 					<div className='flex flex-col'>
-						<MonitorPlay className='size-10' />
+						<MonitorPlay className='size-10 ' />
 						<p className='font-space-grotesk text-xl font-bold'>
 							{t('numberOfLessons')}
 						</p>
 						<div className='text-2xl font-medium'>90 ta</div>
 					</div>
 
-					<div className='flex flex-col'>
-						<CalendarRange className='size-10' />
+					<div className='flex flex-col '>
+						<CalendarRange className='size-10 ' />
 						<p className='font-space-grotesk text-xl font-bold'>
 							{t('courseDuration')}
 						</p>
@@ -90,7 +90,7 @@ function Overview() {
 				</h2>
 
 				<div className='mt-2'>
-					{forWhom.split(',').map(i => (
+					{forWhom.split(', ').map(i => (
 						<div className='mt-1 flex items-center' key={i}>
 							<Dot />
 							<p className='flex-1 text-slate-400'>{i}</p>
@@ -103,7 +103,7 @@ function Overview() {
 				<div className='mt-6 flex items-center gap-1 font-space-grotesk text-xl'>
 					<Star className='fill-[#DD6B20] text-[#DD6B20]' />
 					<div className='font-medium'>
-						{t('reviewCourse')}: <span className='font-bold'>4.6</span>
+						{t('reviewCourse')}: <span className='font-bold'>4.5</span>
 					</div>
 					<Dot />
 					<div className='font-medium'>
@@ -133,6 +133,6 @@ function Overview() {
 
 export default Overview
 
-const learn = 'Javascript, AJAX, Algoritm, Promise, Git va Github, JSON-Server'
+const learn = 'JavaScript, AJAX, Algoritm, Promise, Git va Github, JSON-Server'
 const forWhom =
-	"Dasturlashga qiziqish borlar, Javascript dasturlash tilini o'rganish instagi, Amaliy loyihalar qilish"
+	"Dasturlashga qiziqish borlar, JavaScript dasturlash tilini o'rganish istagi, Amaliy loyihalar qilish"

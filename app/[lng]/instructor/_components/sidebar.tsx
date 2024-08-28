@@ -13,7 +13,7 @@ function Sidebar() {
 			<div className='container mt-6'>
 				<div className='flex flex-col space-y-3'>
 					{instructorNavLinks.map(item => (
-						<Link href={item.route} key={item.route}>
+						<Link key={item.route} href={item.route}>
 							<Button
 								className='flex w-full justify-start gap-2'
 								variant={

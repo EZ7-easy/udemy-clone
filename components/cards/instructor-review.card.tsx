@@ -1,8 +1,7 @@
 'use client'
 
-import React from 'react'
-import { Button } from '../ui/button'
 import { Flag } from 'lucide-react'
+import { Button } from '../ui/button'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import ReactStars from 'react-stars'
 
@@ -17,18 +16,18 @@ function InstructorReviewCard() {
 
 					<div className='flex flex-col'>
 						<div className='font-space-grotesk text-sm'>
-							Bobur Nematov{' '}
+							Samar Badriddinov{' '}
 							<span className='text-xs text-muted-foreground'>3 Days ago</span>
 						</div>
-						<ReactStars value={4.5} edit={false} color2='#DD6B20' />
+						<ReactStars value={4.5} edit={false} color2='#E59819' />
 						<div className='font-space-grotesk font-bold'>
 							Full Course ReactJS
 						</div>
 						<p className='text-sm text-muted-foreground'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-							eum iusto dolores neque quod atque cum. Veniam nam cupiditate
-							doloribus corrupti officia, incidunt quae. Odit alias illo
-							accusamus corrupti possimus?
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius
+							voluptate corporis ratione esse. Voluptates quam sit suscipit rem
+							odio quo non repudiandae, delectus voluptas ipsa hic veniam sunt.
+							Vitae, sunt?
 						</p>
 					</div>
 				</div>

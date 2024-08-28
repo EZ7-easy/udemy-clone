@@ -10,13 +10,13 @@ import GlobalSearch from './global-search'
 import LanguageDropdown from '@/components/shared/language-dropdown'
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import UserBox from '@/components/shared/user-box'
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 import Mobile from './mobile'
 import { useParams, usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 function Navbar() {
-	const t = UseTranslate()
+	const t = useTranslate()
 	const pathname = usePathname()
 	const { lng } = useParams()
 
@@ -53,7 +53,6 @@ function Navbar() {
 						<Mobile />
 						<ModeToggle />
 					</div>
-
 					<SignedIn>
 						<UserBox />
 					</SignedIn>

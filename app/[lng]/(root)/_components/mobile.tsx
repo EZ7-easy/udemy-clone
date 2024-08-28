@@ -1,24 +1,24 @@
 'use client'
 
+import LanguageDropdown from '@/components/shared/language-dropdown'
+import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
-import { AlignCenter, ShoppingCart } from 'lucide-react'
+import { Separator } from '@/components/ui/separator'
 import {
 	Sheet,
 	SheetContent,
 	SheetHeader,
 	SheetTrigger,
 } from '@/components/ui/sheet'
-import Logo from '@/components/shared/logo'
-import { Separator } from '@/components/ui/separator'
 import { navLinks } from '@/constants'
+import useTranslate from '@/hooks/use-translate'
+import { AlignCenter, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import UseTranslate from '@/hooks/use-translate'
-import LanguageDropdown from '@/components/shared/language-dropdown'
 import GlobalSearch from './global-search'
 import ModeToggle from '@/components/shared/mode-toggle'
 
 function Mobile() {
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<Sheet>
@@ -37,8 +37,7 @@ function Mobile() {
 						<Link
 							href={`/${nav.route}`}
 							key={nav.route}
-							className='flex h-12 cursor-pointer items-center gap-2 rounded-sm px-3 transition-colors
-                             hover:bg-blue-400/20'
+							className='flex h-12 cursor-pointer items-center gap-2 rounded-sm px-3 transition-colors hover:bg-blue-400/20'
 						>
 							<nav.icon className='size-5' />
 							<span>{t(nav.name)}</span>

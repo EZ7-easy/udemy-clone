@@ -1,13 +1,13 @@
 'use client'
 
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 import Image from 'next/image'
 import ReactStars from 'react-stars'
 import { PiStudentBold } from 'react-icons/pi'
 import { Clock3 } from 'lucide-react'
 
 function Hero() {
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<>
@@ -16,31 +16,33 @@ function Hero() {
 			</h1>
 
 			<p className='mt-4 text-muted-foreground'>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex quisquam,
-				esse odio at dolores molestiae harum tenetur
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim neque
+				architecto recusandae dolorem
 			</p>
 
 			<div className='mt-4 flex flex-wrap items-center gap-6'>
 				<div className='flex items-center gap-2'>
 					<Image
-						width={40}
-						height={40}
+						width={50}
+						height={50}
 						alt='author'
-						src='https://lh3.googleusercontent.com/a/ACg8ocJ37vKlSjIjRXfI-JNDgXo_lduQrdLNeICm33fe7r_cI6Njsrw=s288-c-no'
+						src={
+							'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75'
+						}
 						className='rounded-full'
 					/>
-					<p className='font-space-grotesk font-bold'>Nematov Bobur</p>
+					<p className='font-space-grotesk font-bold'>Chris Impley</p>
 				</div>
 
 				<div className='flex items-center gap-2 font-space-grotesk'>
-					<p className='font-bold text-[#e59819]'>4.5</p>
-					<ReactStars value={4.5} edit={false} color2='#e59819' />
+					<p className='font-bold text-[#E59819]'>4.5</p>
+					<ReactStars value={4.5} edit={false} color2='#E59819' />
 					<p className='font-bold'>(199)</p>
 				</div>
 
-				<div className='flex items-center gap-2 font-space-grotesk'>
+				<div className='flex items-center gap-2'>
 					<PiStudentBold className='size-6' />
-					<p className='font-space-grotesk font-bold'>{t('students')}</p>
+					<p className='font-space-grotesk font-bold'>80 {t('students')}</p>
 				</div>
 
 				<div className='flex items-center gap-2'>

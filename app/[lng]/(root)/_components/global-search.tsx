@@ -3,11 +3,9 @@ import { Search } from 'lucide-react'
 
 function GlobalSearch() {
 	return (
-		<div>
-			<Button variant={'ghost'} size={'icon'}>
-				<Search />
-			</Button>
-		</div>
+		<Button size={'icon'} variant={'ghost'}>
+			<Search />
+		</Button>
 	)
 }
 

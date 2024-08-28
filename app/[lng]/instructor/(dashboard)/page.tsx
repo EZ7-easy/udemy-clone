@@ -11,9 +11,9 @@ function Page() {
 			<Header title='Dashboard' description='Welcome to your dashboard' />
 
 			<div className='mt-4 grid grid-cols-3 gap-4'>
-				<StatisticsCard label='Total Courses' value='4' Icon={MonitorPlay} />
+				<StatisticsCard label='Total courses' value='4' Icon={MonitorPlay} />
 				<StatisticsCard
-					label='Total Students'
+					label='Total students'
 					value='11.000'
 					Icon={PiStudent}
 				/>
@@ -21,8 +21,8 @@ function Page() {
 			</div>
 
 			<Header
-				title='Latest Courses'
-				description='Here are you latest courses'
+				title='Latest courses'
+				description='Here are your latest courses'
 			/>
 
 			{/* <div className='mt-4 grid grid-cols-3 gap-4'>
@@ -33,7 +33,7 @@ function Page() {
 					.slice(0, 3)}
 			</div> */}
 
-			<Header title='Reviews' description='Here are you latest reviews' />
+			<Header title='Reviews' description='Here are your latest reviews' />
 
 			<div className='mt-4 grid grid-cols-3 gap-4'>
 				<div className='rounded-md bg-background px-4 pb-4'>

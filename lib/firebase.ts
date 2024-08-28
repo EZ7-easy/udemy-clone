@@ -3,12 +3,12 @@ import { getStorage, ref } from 'firebase/storage'
 import { v4 as uuidv4 } from 'uuid'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAPiZTzJ68iKBUj3HW-jzp3kOtUypv8R_E',
-	authDomain: 'praktikum-bd256.firebaseapp.com',
-	projectId: 'praktikum-bd256',
-	storageBucket: 'praktikum-bd256.appspot.com',
-	messagingSenderId: '630668059192',
-	appId: '1:630668059192:web:1b878654c793c11bf7bccd',
+	apiKey: 'AIzaSyAb9twMin6IT-tfbzaa6qolPqGJy97410s',
+	authDomain: 'praktikum-4ddcd.firebaseapp.com',
+	projectId: 'praktikum-4ddcd',
+	storageBucket: 'praktikum-4ddcd.appspot.com',
+	messagingSenderId: '559751721263',
+	appId: '1:559751721263:web:28eb5e6696d630b187f1da',
 }
 
 const app = initializeApp(firebaseConfig)

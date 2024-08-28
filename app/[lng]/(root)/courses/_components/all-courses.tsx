@@ -9,10 +9,10 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 import { courses, filterCourses, filterLevels } from '@/constants'
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 
 function AllCourses() {
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<div className='container mx-auto mt-12 max-w-6xl'>

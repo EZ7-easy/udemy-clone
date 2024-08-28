@@ -19,7 +19,7 @@ async function Page({ params: { lng } }: LngParams) {
 	const { t } = await translation(lng)
 
 	return (
-		<div>
+		<>
 			<TopBar label='allCourses' extra='Full Courses ReactJS' />
 
 			<div className='container mx-auto max-w-6xl'>
@@ -54,7 +54,7 @@ async function Page({ params: { lng } }: LngParams) {
 					<CarouselNext />
 				</Carousel>
 			</div>
-		</div>
+		</>
 	)
 }
 

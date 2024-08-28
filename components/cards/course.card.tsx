@@ -16,7 +16,6 @@ function CourseCard(course: ICourse) {
 						className='object-cover'
 					/>
 				</CardContent>
-
 				<div className='my-4 flex flex-col space-y-2 px-2'>
 					<h2 className='line-clamp-1 font-space-grotesk text-2xl font-bold'>
 						{course.title}
@@ -24,15 +23,13 @@ function CourseCard(course: ICourse) {
 					<Separator />
 					<div className='flex items-center justify-between'>
 						<div className='flex items-center gap-2'>
-							<div className='relative size-[40px]'>
-								<Image
-									src={course.author.image}
-									alt={course.author.name}
-									width={40}
-									height={40}
-									className='rounded-full object-cover'
-								/>
-							</div>
+							<Image
+								src={course.author.image}
+								alt={course.author.name}
+								width={40}
+								height={40}
+								className='rounded-full object-cover'
+							/>
 							<p className='text-sm text-muted-foreground'>
 								{course.author.name}
 							</p>

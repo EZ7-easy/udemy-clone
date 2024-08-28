@@ -2,7 +2,7 @@ import { ChildProps } from '@/types'
 import Navbar from './_components/navbar'
 import Footer from './_components/footer'
 
-function layout({ children }: ChildProps) {
+function Layout({ children }: ChildProps) {
 	return (
 		<div>
 			<Navbar />
@@ -12,4 +12,4 @@ function layout({ children }: ChildProps) {
 	)
 }
 
-export default layout
+export default Layout

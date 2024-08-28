@@ -1,7 +1,5 @@
 'use client'
 
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-
 import { courseSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -18,10 +16,10 @@ import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 import {
 	Select,
-	SelectTrigger,
 	SelectContent,
-	SelectValue,
 	SelectItem,
+	SelectTrigger,
+	SelectValue,
 } from '../ui/select'
 import { courseCategory, courseLanguage, courseLevels } from '@/constants'
 import { Button } from '../ui/button'
@@ -31,9 +29,9 @@ import { ChangeEvent, useState } from 'react'
 import { getDownloadURL, uploadString } from 'firebase/storage'
 import { courseStorageRefs } from '@/lib/firebase'
 import { ImageDown } from 'lucide-react'
+import { Dialog, DialogContent } from '../ui/dialog'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useUser } from '@clerk/nextjs'
 
 function CourseFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
@@ -41,7 +39,6 @@ function CourseFieldsForm() {
 	const [open, setOpen] = useState(false)
 
 	const router = useRouter()
-	const { user } = useUser()
 
 	const form = useForm<z.infer<typeof courseSchema>>({
 		resolver: zodResolver(courseSchema),
@@ -74,19 +71,16 @@ function CourseFieldsForm() {
 
 	function onSubmit(values: z.infer<typeof courseSchema>) {
 		if (!previewImage) {
-			return toast.error('Please upload image')
+			return toast.error('Please upload a preview image')
 		}
 		setIsLoading(true)
 		const { oldPrice, currentPrice } = values
-		const promise = createCourse(
-			{
-				...values,
-				oldPrice: +oldPrice,
-				currentPrice: +currentPrice,
-				previewImage,
-			},
-			user?.id as string
-		)
+		const promise = createCourse({
+			...values,
+			oldPrice: +oldPrice,
+			currentPrice: +currentPrice,
+			previewImage,
+		})
 			.then(() => {
 				form.reset()
 				router.push('/en/instructor/my-courses')
@@ -116,7 +110,7 @@ function CourseFieldsForm() {
 									<Input
 										{...field}
 										className='bg-secondary'
-										placeholder='Learn ReactJS from scratch'
+										placeholder='Learn ReactJS - from 0 to hero'
 										disabled={isLoading}
 									/>
 								</FormControl>
@@ -153,7 +147,7 @@ function CourseFieldsForm() {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>
-										What will students learn in your course
+										What will students learn in your course?
 										<span className='text-red-500'>*</span>
 									</FormLabel>
 									<FormControl>
@@ -167,7 +161,6 @@ function CourseFieldsForm() {
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name='requirements'
@@ -197,8 +190,7 @@ function CourseFieldsForm() {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>
-										level
-										<span className='text-red-500'>*</span>
+										Level<span className='text-red-500'>*</span>
 									</FormLabel>
 									<FormControl>
 										<Select
@@ -207,7 +199,7 @@ function CourseFieldsForm() {
 											disabled={isLoading}
 										>
 											<SelectTrigger className='w-full bg-secondary'>
-												<SelectValue placeholder='Select' />
+												<SelectValue placeholder={'Select'} />
 											</SelectTrigger>
 											<SelectContent>
 												{courseLevels.map(item => (
@@ -222,15 +214,13 @@ function CourseFieldsForm() {
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name='category'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>
-										Category
-										<span className='text-red-500'>*</span>
+										Category<span className='text-red-500'>*</span>
 									</FormLabel>
 									<FormControl>
 										<Select
@@ -239,7 +229,7 @@ function CourseFieldsForm() {
 											disabled={isLoading}
 										>
 											<SelectTrigger className='w-full bg-secondary'>
-												<SelectValue placeholder='Select' />
+												<SelectValue placeholder={'Select'} />
 											</SelectTrigger>
 											<SelectContent>
 												{courseCategory.map(item => (
@@ -254,15 +244,13 @@ function CourseFieldsForm() {
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name='language'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>
-										Language
-										<span className='text-red-500'>*</span>
+										Language<span className='text-red-500'>*</span>
 									</FormLabel>
 									<FormControl>
 										<Select
@@ -271,7 +259,7 @@ function CourseFieldsForm() {
 											disabled={isLoading}
 										>
 											<SelectTrigger className='w-full bg-secondary'>
-												<SelectValue placeholder='Select' />
+												<SelectValue placeholder={'Select'} />
 											</SelectTrigger>
 											<SelectContent>
 												{courseLanguage.map(item => (
@@ -286,7 +274,6 @@ function CourseFieldsForm() {
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name='oldPrice'
@@ -307,14 +294,13 @@ function CourseFieldsForm() {
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name='currentPrice'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>
-										Current price<span className='text-red-500'>*</span>
+										Current Price<span className='text-red-500'>*</span>
 									</FormLabel>
 									<FormControl>
 										<Input
@@ -345,18 +331,20 @@ function CourseFieldsForm() {
 					<div className='flex justify-end gap-4'>
 						<Button
 							type='button'
+							size={'lg'}
 							variant={'destructive'}
 							onClick={() => form.reset()}
 							disabled={isLoading}
 						>
 							Clear
 						</Button>
-						<Button type='submit' disabled={isLoading}>
+						<Button type='submit' size={'lg'} disabled={isLoading}>
 							Submit
 						</Button>
 						{previewImage && (
 							<Button
 								type='button'
+								size={'lg'}
 								variant={'outline'}
 								onClick={() => setOpen(true)}
 							>

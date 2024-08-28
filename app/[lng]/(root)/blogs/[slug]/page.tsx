@@ -6,24 +6,7 @@ import Image from 'next/image'
 import ShareBtns from './_components/share-btns'
 import parse from 'html-react-parser'
 import { Separator } from '@/components/ui/separator'
-import { Metadata, ResolvingMetadata } from 'next'
 
-export async function generateMetadata(
-	{ params }: { params: { slug: string } },
-	parent: ResolvingMetadata
-): Promise<Metadata> {
-	const blog = await getDetailedBlog(params.slug!)
-
-	return {
-		title: blog.title,
-		description: blog.description,
-		openGraph: {
-			images: blog.image.url,
-			title: blog.title,
-			description: blog.description,
-		},
-	}
-}
 async function Page({ params }: { params: { slug: string } }) {
 	const blog = await getDetailedBlog(params.slug)
 
@@ -71,7 +54,7 @@ async function Page({ params }: { params: { slug: string } }) {
 						<ShareBtns />
 					</div>
 				</div>
-				<div className='prose dark:prose-invert max-w-none flex-1'>
+				<div className='prose max-w-none flex-1 dark:prose-invert'>
 					{parse(blog.content.html)}
 				</div>
 			</div>

@@ -1,21 +1,20 @@
 'use client'
 
 import { SignOutButton, useUser } from '@clerk/nextjs'
-import { Avatar, AvatarImage } from '../ui/avatar'
 import {
 	DropdownMenu,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuSeparator,
 } from '../ui/dropdown-menu'
-
+import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
+import { Avatar, AvatarImage } from '../ui/avatar'
 import Link from 'next/link'
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 
 function UserBox() {
 	const { user } = useUser()
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<DropdownMenu>
@@ -56,7 +55,7 @@ function UserBox() {
 						Instructor
 					</DropdownMenuItem>
 				</Link>
-				<Link href={'/profile'}>
+				<Link href={'/user-profile'}>
 					<DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
 						{t('manageAccount')}
 					</DropdownMenuItem>

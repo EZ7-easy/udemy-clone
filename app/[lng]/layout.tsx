@@ -21,14 +21,14 @@ const spaceGrotesk = SpaceGrotesk({
 	variable: '--font-space-grotesk',
 })
 
-export const metadata: Metadata = {
-	title: 'Startup Udemy',
-	description: 'Stratup Udemy',
-	icons: { icon: '/logo.svg' },
-}
-
 export async function generateStaticParams() {
 	return languages.map(lng => ({ lng }))
+}
+
+export const metadata: Metadata = {
+	title: 'Startup Praktikum - Next.js',
+	description: "Startup Praktikum's Next.js project",
+	icons: { icon: '/logo.svg' },
 }
 
 interface Props extends ChildProps {

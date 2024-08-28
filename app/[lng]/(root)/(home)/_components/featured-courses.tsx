@@ -1,4 +1,4 @@
-'use clinet'
+'use client'
 
 import CourseCard from '@/components/cards/course.card'
 import { Button } from '@/components/ui/button'
@@ -10,13 +10,13 @@ import {
 	CarouselPrevious,
 } from '@/components/ui/carousel'
 import { courses, filterCourses } from '@/constants'
-import UseTranslate from '@/hooks/use-translate'
+import useTranslate from '@/hooks/use-translate'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 
 function FeaturedCourses() {
 	const [filter, setFilter] = useState('all')
-	const t = UseTranslate()
+	const t = useTranslate()
 
 	return (
 		<div className='container mx-auto max-w-6xl py-12'>
@@ -47,7 +47,6 @@ function FeaturedCourses() {
 					))}
 				</div>
 			</div>
-
 			<div className='mt-4 flex flex-col space-y-4 md:hidden'>
 				{courses.map(course => (
 					<CourseCard key={course.title} {...course} />
