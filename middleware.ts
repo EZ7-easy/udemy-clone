@@ -15,8 +15,8 @@ export default authMiddleware({
 		'/:lng/blogs',
 		'/:lng/blogs/:slug',
 		'/:lng/contacts',
-		'/en/api/webhook',
 	],
+	ignoredRoutes: ['/en/api/webhook'],
 })
 
 export const config = {
