@@ -45,3 +45,8 @@ export interface ICreateLesson {
 	section: string
 	path: string
 }
+
+export interface IUpdatePosition {
+	lists: { _id: string; position: number }[]
+	path: string
+}
