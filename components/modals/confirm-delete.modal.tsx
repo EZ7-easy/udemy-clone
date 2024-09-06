@@ -1,5 +1,7 @@
 'use client'
 
+import { ReactNode } from 'react'
+import { Button } from '../ui/button'
 import {
 	Dialog,
 	DialogContent,
@@ -8,9 +10,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '../ui/button'
-import { ReactNode } from 'react'
+} from '../ui/dialog'
 
 interface Props {
 	onConfirm: () => void

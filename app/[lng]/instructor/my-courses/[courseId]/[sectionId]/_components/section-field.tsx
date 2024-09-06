@@ -1,7 +1,7 @@
 'use client'
 
-import { updateCourse } from '@/actions/course.action'
-import { ICourse } from '@/app.types'
+import { updateSectionTitle } from '@/actions/section.action'
+import { ISection } from '@/app.types'
 import FillLoading from '@/components/shared/fill-loading'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -10,12 +10,13 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
+	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
-import { Textarea } from '@/components/ui/textarea'
 import useToggleEdit from '@/hooks/use-toggle-edit'
-import { descriptionSchema } from '@/lib/validation'
+import { sectionSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Edit2, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
@@ -24,30 +25,27 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-function Description(course: ICourse) {
+function SectionField(section: ISection) {
 	const { state, onToggle } = useToggleEdit()
 
 	return (
 		<Card>
 			<CardContent className='relative p-6'>
 				<div className='flex items-center justify-between'>
-					<span className='text-lg font-medium'>Description</span>
+					<span className='text-lg font-medium'>Title</span>
 					<Button size={'icon'} variant={'ghost'} onClick={onToggle}>
 						{state ? <X /> : <Edit2 />}
 					</Button>
 				</div>
 				<Separator className='my-3' />
-
 				{state ? (
-					<Forms course={course} onToggle={onToggle} />
+					<Forms section={section} onToggle={onToggle} />
 				) : (
 					<div className='flex items-center gap-2'>
 						<span className='self-start font-space-grotesk font-bold text-muted-foreground'>
-							Description:
+							Title:
 						</span>
-						<span className='line-clamp-3 font-medium'>
-							{course.description}
-						</span>
+						<span className='line-clamp-3 font-medium'>{section.title}</span>
 					</div>
 				)}
 			</CardContent>
@@ -55,33 +53,31 @@ function Description(course: ICourse) {
 	)
 }
 
-export default Description
+export default SectionField
 
 interface FormsProps {
-	course: ICourse
+	section: ISection
 	onToggle: () => void
 }
-function Forms({ course, onToggle }: FormsProps) {
+function Forms({ section, onToggle }: FormsProps) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const pathname = usePathname()
 
-	const form = useForm<z.infer<typeof descriptionSchema>>({
-		resolver: zodResolver(descriptionSchema),
-		defaultValues: {
-			description: course.description,
-		},
+	const form = useForm<z.infer<typeof sectionSchema>>({
+		resolver: zodResolver(sectionSchema),
+		defaultValues: { title: section.title },
 	})
 
-	const onSubmit = (values: z.infer<typeof descriptionSchema>) => {
+	const onSubmit = (values: z.infer<typeof sectionSchema>) => {
 		setIsLoading(true)
-		const promise = updateCourse(course._id, values, pathname)
+		const promise = updateSectionTitle(section._id, values.title, pathname)
 			.then(() => onToggle())
 			.finally(() => setIsLoading(false))
 
 		toast.promise(promise, {
 			loading: 'Loading...',
-			success: 'Successfully updated!',
+			success: 'Successfully created!',
 			error: 'Something went wrong!',
 		})
 	}
@@ -93,11 +89,20 @@ function Forms({ course, onToggle }: FormsProps) {
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
 					<FormField
 						control={form.control}
-						name='description'
+						name='title'
 						render={({ field }) => (
 							<FormItem>
+								<FormLabel>
+									Section title
+									<span className='text-red-500'>*</span>
+								</FormLabel>
 								<FormControl>
-									<Textarea disabled={isLoading} {...field} />
+									<Input
+										{...field}
+										className='bg-secondary'
+										disabled={isLoading}
+										placeholder='e.g. Introduction to the course'
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>

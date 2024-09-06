@@ -348,7 +348,6 @@ function CourseFieldsForm() {
 						{previewImage && (
 							<Button
 								type='button'
-								size={'lg'}
 								variant={'outline'}
 								onClick={() => setOpen(true)}
 							>

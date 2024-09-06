@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { courseCategory, courseLanguage, courseLevels } from '@/constants'
-import UseToggleEdit from '@/hooks/use-toggle-edit'
+import useToggleEdit from '@/hooks/use-toggle-edit'
 import { selectFieldsSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Edit2, X } from 'lucide-react'
@@ -33,7 +33,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 function SelectFields(course: ICourse) {
-	const { state, onToggle } = UseToggleEdit()
+	const { state, onToggle } = useToggleEdit()
 
 	return (
 		<Card>
@@ -81,9 +81,9 @@ interface FormsProps {
 	course: ICourse
 	onToggle: () => void
 }
-
 function Forms({ course, onToggle }: FormsProps) {
 	const [isLoading, setIsLoading] = useState(false)
+
 	const pathname = usePathname()
 
 	const form = useForm<z.infer<typeof selectFieldsSchema>>({

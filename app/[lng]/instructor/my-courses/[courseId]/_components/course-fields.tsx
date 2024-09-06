@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
-import UseToggleEdit from '@/hooks/use-toggle-edit'
+import useToggleEdit from '@/hooks/use-toggle-edit'
 import { courseFieldsSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Edit2, X } from 'lucide-react'
@@ -25,7 +25,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 function CourseFields(course: ICourse) {
-	const { state, onToggle } = UseToggleEdit()
+	const { state, onToggle } = useToggleEdit()
 
 	return (
 		<Card>
@@ -69,9 +69,9 @@ interface FormsProps {
 	course: ICourse
 	onToggle: () => void
 }
-
 function Forms({ course, onToggle }: FormsProps) {
 	const [isLoading, setIsLoading] = useState(false)
+
 	const pathname = usePathname()
 
 	const form = useForm<z.infer<typeof courseFieldsSchema>>({

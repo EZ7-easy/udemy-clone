@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-function UseToggleEdit() {
+function useToggleEdit() {
 	const [state, setState] = useState(false)
 
 	const onToggle = () => setState(prev => !prev)
@@ -10,4 +10,4 @@ function UseToggleEdit() {
 	return { state, onToggle }
 }
 
-export default UseToggleEdit
+export default useToggleEdit

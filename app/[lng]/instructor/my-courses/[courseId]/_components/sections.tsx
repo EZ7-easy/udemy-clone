@@ -1,6 +1,6 @@
 'use client'
 
-import { createSection } from '@/actions/section.action'
+import { createSection, updateSection } from '@/actions/section.action'
 import { ICourse, ISection } from '@/app.types'
 import FillLoading from '@/components/shared/fill-loading'
 import { Button } from '@/components/ui/button'
@@ -24,7 +24,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+import { DragDropContext, DropResult, Droppable } from '@hello-pangea/dnd'
 import SectionList from './section-list'
 
 interface Props {
@@ -33,13 +33,48 @@ interface Props {
 }
 
 function Sections({ course, sections }: Props) {
+	const [isLoading, setIsLoading] = useState(false)
 	const { state, onToggle } = useToggleEdit()
+	const pathname = usePathname()
 
-	const onDragEnd = () => {}
+	const onReorder = (updateData: { _id: string; position: number }[]) => {
+		setIsLoading(true)
+		const promise = updateSection({
+			lists: updateData,
+			path: pathname,
+		}).finally(() => setIsLoading(false))
+
+		toast.promise(promise, {
+			loading: 'Loading...',
+			success: 'Successfully reordered!',
+			error: 'Something went wrong!',
+		})
+	}
+
+	const onDragEnd = (result: DropResult) => {
+		if (!result.destination) return null
+
+		const items = Array.from(sections)
+		const [reorderedItem] = items.splice(result.source.index, 1)
+		items.splice(result.destination.index, 0, reorderedItem)
+
+		const startIndex = Math.min(result.source.index, result.destination.index)
+		const endIndex = Math.max(result.source.index, result.destination.index)
+
+		const updatedSections = items.slice(startIndex, endIndex + 1)
+
+		const bulkUpdatedData = updatedSections.map(section => ({
+			_id: section._id,
+			position: items.findIndex(item => item._id === section._id),
+		}))
+
+		onReorder(bulkUpdatedData)
+	}
 
 	return (
 		<Card>
 			<CardContent className='relative p-6'>
+				{isLoading && <FillLoading />}
 				<div className='flex items-center justify-between'>
 					<span className='text-lg font-medium'>Sections</span>
 					<Button size={'icon'} variant={'ghost'} onClick={onToggle}>
@@ -55,23 +90,21 @@ function Sections({ course, sections }: Props) {
 						{!sections.length ? (
 							<p className='text-muted-foreground'>No sections</p>
 						) : (
-							<>
-								<DragDropContext onDragEnd={onDragEnd}>
-									<Droppable droppableId='sections'>
-										{provided => (
-											<div {...provided.droppableProps} ref={provided.innerRef}>
-												{sections.map((section, index) => (
-													<SectionList
-														key={section._id}
-														section={section}
-														index={index}
-													/>
-												))}
-											</div>
-										)}
-									</Droppable>
-								</DragDropContext>
-							</>
+							<DragDropContext onDragEnd={onDragEnd}>
+								<Droppable droppableId='sections'>
+									{provided => (
+										<div {...provided.droppableProps} ref={provided.innerRef}>
+											{sections.map((section, index) => (
+												<SectionList
+													key={section._id}
+													section={section}
+													index={index}
+												/>
+											))}
+										</div>
+									)}
+								</Droppable>
+							</DragDropContext>
 						)}
 					</>
 				)}
@@ -86,9 +119,9 @@ interface FormsProps {
 	course: ICourse
 	onToggle: () => void
 }
-
 function Forms({ course, onToggle }: FormsProps) {
 	const [isLoading, setIsLoading] = useState(false)
+
 	const pathname = usePathname()
 
 	const form = useForm<z.infer<typeof sectionSchema>>({
@@ -128,7 +161,7 @@ function Forms({ course, onToggle }: FormsProps) {
 										{...field}
 										className='bg-secondary'
 										disabled={isLoading}
-										placeholder='e.g Introduction to the course'
+										placeholder='e.g. Introduction to the course'
 									/>
 								</FormControl>
 								<FormMessage />

@@ -49,7 +49,7 @@ export const updateCourse = async (
 		await Course.findByIdAndUpdate(id, updateData)
 		revalidatePath(path)
 	} catch (error) {
-		throw new Error('Soething went wrong while updating course!')
+		throw new Error('Something went wrong while updating course status!')
 	}
 }
 
@@ -59,6 +59,6 @@ export const deleteCourse = async (id: string, path: string) => {
 		await Course.findByIdAndDelete(id)
 		revalidatePath(path)
 	} catch (error) {
-		throw new Error('Soething went wrong while deleting course!')
+		throw new Error('Something went wrong while deleting course!')
 	}
 }
