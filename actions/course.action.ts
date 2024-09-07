@@ -2,10 +2,14 @@
 
 import Course from '@/database/course.model'
 import { connectToDatabase } from '@/lib/mongoose'
-import { GetCoursesParams, ICreateCourse } from './types'
-import { ICourse } from '@/app.types'
+import { GetAllCoursesParams, GetCoursesParams, ICreateCourse } from './types'
+import { ICourse, ILesson } from '@/app.types'
 import { revalidatePath } from 'next/cache'
 import User from '@/database/user.model'
+import { cache } from 'react'
+import Section from '@/database/section.model'
+import Lesson from '@/database/lesson.model'
+import { calculateTotalDuration } from '@/lib/utils'
 
 export const createCourse = async (data: ICreateCourse, clerkId: string) => {
 	try {
@@ -74,5 +78,106 @@ export const deleteCourse = async (id: string, path: string) => {
 		revalidatePath(path)
 	} catch (error) {
 		throw new Error('Something went wrong while deleting course!')
+	}
+}
+
+export const getFeaturedCourses = cache(async () => {
+	try {
+		await connectToDatabase()
+		const courses = await Course.find({ published: true })
+			.limit(6)
+			.sort({ createdAt: -1 })
+			.select('previewImage title slug oldPrice currentPrice instructor')
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture',
+				model: User,
+			})
+
+		return courses
+	} catch (error) {
+		throw new Error('Something went wrong while getting featured courses!')
+	}
+})
+
+export const getDetailedCourse = cache(async (id: string) => {
+	try {
+		await connectToDatabase()
+
+		const course = await Course.findById(id)
+			.select(
+				'title description instructor previewImage oldPrice currentPrice learning requirements tags updatedAt level category language'
+			)
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture',
+				model: User,
+			})
+
+		const sections = await Section.find({ course: id }).populate({
+			path: 'lessons',
+			model: Lesson,
+		})
+
+		const totalLessons: ILesson[] = sections
+			.map(section => section.lessons)
+			.flat()
+
+		const data = {
+			...course._doc,
+			totalLessons: totalLessons.length,
+			totalSections: sections.length,
+			totalDuration: calculateTotalDuration(totalLessons),
+		}
+
+		return data
+	} catch (error) {
+		throw new Error('Something went wrong while getting detailed course!')
+	}
+})
+
+export const getAllCourse = async (params: GetAllCoursesParams) => {
+	try {
+		await connectToDatabase()
+		const { searchQuery, filter, page = 1, pageSize = 6 } = params
+
+		const skipAmount = (page - 1) * pageSize
+
+		let sortOptions = {}
+
+		switch (filter) {
+			case 'newest':
+				sortOptions = { createdAt: -1 }
+				break
+			case 'popular':
+				sortOptions = { students: -1 }
+				break
+			case 'lowest-price':
+				sortOptions = { currentPrice: 1 }
+				break
+			case 'highest-price':
+				sortOptions = { currentPrice: -1 }
+				break
+			default:
+				break
+		}
+
+		const courses = await Course.find({ published: true })
+			.select('previewImage title slug _id oldPrice currentPrice instructor')
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture',
+				model: User,
+			})
+			.skip(skipAmount)
+			.limit(pageSize)
+			.sort(sortOptions)
+
+		const totalCourses = await Course.find({ published: true }).countDocuments()
+		const isNext = totalCourses > skipAmount + courses.length
+
+		return { courses, isNext, totalCourses }
+	} catch (error) {
+		throw new Error('Something went wrong while getting all courses!')
 	}
 }
