@@ -10,6 +10,7 @@ import { cache } from 'react'
 import Section from '@/database/section.model'
 import Lesson from '@/database/lesson.model'
 import { calculateTotalDuration } from '@/lib/utils'
+import { FilterQuery } from 'mongoose'
 
 export const createCourse = async (data: ICreateCourse, clerkId: string) => {
 	try {
@@ -136,12 +137,18 @@ export const getDetailedCourse = cache(async (id: string) => {
 	}
 })
 
-export const getAllCourse = async (params: GetAllCoursesParams) => {
+export const getAllCourses = async (params: GetAllCoursesParams) => {
 	try {
 		await connectToDatabase()
 		const { searchQuery, filter, page = 1, pageSize = 6 } = params
 
 		const skipAmount = (page - 1) * pageSize
+
+		const query: FilterQuery<typeof Course> = {}
+
+		if (searchQuery) {
+			query.$or = [{ title: { $regex: new RegExp(searchQuery, 'i') } }]
+		}
 
 		let sortOptions = {}
 
@@ -158,11 +165,32 @@ export const getAllCourse = async (params: GetAllCoursesParams) => {
 			case 'highest-price':
 				sortOptions = { currentPrice: -1 }
 				break
+			case 'english':
+				query.language = 'english'
+				break
+			case 'uzbek':
+				query.language = 'uzbek'
+				break
+			case 'russian':
+				query.language = 'russian'
+				break
+			case 'turkish':
+				query.language = 'turkish'
+				break
+			case 'beginner':
+				query.level = 'beginner'
+				break
+			case 'intermediate':
+				query.level = 'intermediate'
+				break
+			case 'advanced':
+				query.level = 'advanced'
+				break
 			default:
 				break
 		}
 
-		const courses = await Course.find({ published: true })
+		const courses = await Course.find(query)
 			.select('previewImage title slug _id oldPrice currentPrice instructor')
 			.populate({
 				path: 'instructor',
@@ -174,7 +202,8 @@ export const getAllCourse = async (params: GetAllCoursesParams) => {
 			.sort(sortOptions)
 
 		const totalCourses = await Course.find({ published: true }).countDocuments()
-		const isNext = totalCourses > skipAmount + courses.length
+		const allCourses = await Course.countDocuments(query)
+		const isNext = allCourses > skipAmount + courses.length
 
 		return { courses, isNext, totalCourses }
 	} catch (error) {
