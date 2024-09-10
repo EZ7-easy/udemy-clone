@@ -35,8 +35,12 @@ function GlobalSearch() {
 	const debounceSearch = debounce(handleSearch, 300)
 
 	return (
-		<div className='search-box'>
-			<Button size={'icon'} variant={'ghost'} className='btn-search'>
+		<div className='search-box  max-sm:mb-4'>
+			<Button
+				size={'icon'}
+				variant={'ghost'}
+				className='btn-search items-center'
+			>
 				<Search />
 			</Button>
 			<input

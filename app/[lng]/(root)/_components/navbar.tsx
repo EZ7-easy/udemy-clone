@@ -25,13 +25,13 @@ function Navbar() {
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between border-b'>
 				<div className='flex items-center gap-4'>
 					<Logo />
-					<div className='hidden items-center gap-3 border-l pl-2 md:flex'>
+					<div className='hidden items-center gap-5 border-l pl-4 md:flex'>
 						{navLinks.map(nav => (
 							<Link
 								href={`/${nav.route}`}
 								key={nav.route}
 								className={cn(
-									'font-medium transition-all hover:text-blue-500 hover:underline',
+									'font-medium text-lg items-center transition-all hover:text-blue-500',
 									pathname === `/${lng}/${nav.route}` && 'text-blue-500'
 								)}
 							>
