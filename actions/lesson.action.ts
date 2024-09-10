@@ -131,11 +131,11 @@ export const uncompleteLesson = async (lessonId: string, path: string) => {
 	}
 }
 
-// export const getLesson = async (id: string) => {
-// 	try {
-// 		await connectToDatabase()
-// 		return await Lesson.findById(id).select('title content videoUrl')
-// 	} catch (error) {
-// 		throw new Error('Something went wrong!')
-// 	}
-// }
+export const getLesson = async (id: string) => {
+	try {
+		await connectToDatabase()
+		return await Lesson.findById(id).select('title content videoUrl')
+	} catch (error) {
+		throw new Error('Something went wrong!')
+	}
+}
