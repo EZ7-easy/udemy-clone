@@ -16,10 +16,7 @@ import { getDetailedCourse, getFeaturedCourses } from '@/actions/course.action'
 import { ICourse } from '@/app.types'
 
 interface Props {
-	params: {
-		lng: string
-		slug: string
-	}
+	params: { lng: string; slug: string }
 }
 
 async function Page({ params: { lng, slug } }: Props) {

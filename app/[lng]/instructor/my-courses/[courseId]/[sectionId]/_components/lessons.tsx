@@ -22,7 +22,7 @@ import { Separator } from '@/components/ui/separator'
 import { Textarea } from '@/components/ui/textarea'
 import useToggleEdit from '@/hooks/use-toggle-edit'
 import { lessonSchema } from '@/lib/validation'
-import { DragDropContext, Droppable, DropResult } from '@hello-pangea/dnd'
+import { DragDropContext, DropResult, Droppable } from '@hello-pangea/dnd'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { BadgePlus, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
@@ -84,10 +84,9 @@ function Lessons({ section, lessons }: Props) {
 
 	const onReorder = (updateData: { _id: string; position: number }[]) => {
 		setIsLoading(true)
-		const promise = editLessonPosition({
-			lists: updateData,
-			path,
-		}).finally(() => setIsLoading(false))
+		const promise = editLessonPosition({ lists: updateData, path }).finally(
+			() => setIsLoading(false)
+		)
 
 		toast.promise(promise, {
 			loading: 'Loading...',
@@ -307,34 +306,32 @@ function Forms({ handler, lesson, isEdit = false, onCancel }: FormProps) {
 							</FormItem>
 						)}
 					/>
-					<FormField
-						control={form.control}
-						name='free'
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<div className='flex items-center space-x-2'>
-										<Checkbox
-											onCheckedChange={field.onChange}
-											checked={field.value}
-										/>
-										<label
-											htmlFor='free'
-											className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-										>
-											Free lesson
-										</label>
-									</div>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
 				</div>
+				<FormField
+					control={form.control}
+					name='free'
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<div className='flex items-center space-x-2'>
+									<Checkbox
+										onCheckedChange={field.onChange}
+										checked={field.value}
+									/>
+									<label className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
+										Are you offering this lesson for free?
+									</label>
+								</div>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
 				<div className='flex items-center gap-2'>
 					<Button type='submit'>{isEdit ? 'Edit' : 'Add'}</Button>
 					{isEdit && (
-						<Button variant={'destructive'} type='button' onClick={onCancel}>
+						<Button variant='destructive' type='button' onClick={onCancel}>
 							Cancel
 						</Button>
 					)}

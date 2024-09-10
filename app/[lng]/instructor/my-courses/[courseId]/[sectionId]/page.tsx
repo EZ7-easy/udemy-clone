@@ -16,8 +16,8 @@ async function Page({ params }: Params) {
 	const sectionJSON = await getSectionById(params.sectionId)
 	const lessonsJSON = await getLessons(params.sectionId)
 
-	const lessons = JSON.parse(JSON.stringify(lessonsJSON))
 	const section = JSON.parse(JSON.stringify(sectionJSON))
+	const lessons = JSON.parse(JSON.stringify(lessonsJSON))
 
 	return (
 		<>

@@ -6,7 +6,6 @@ import {
 	ListVideo,
 	MessageSquareMore,
 	MonitorPlay,
-	Rss,
 	Settings2,
 } from 'lucide-react'
 import {
@@ -28,7 +27,6 @@ import {
 export const navLinks = [
 	{ route: '', name: 'navLink1', icon: Home },
 	{ route: 'courses', name: 'navLink2', icon: ListVideo },
-	{ route: 'blogs', name: 'navLink3', icon: Rss },
 	{ route: 'contacts', name: 'navLink4', icon: Contact },
 ]
 
@@ -69,87 +67,6 @@ export const filterLevels = [
 	{ label: 'level4', name: 'advanced' },
 ]
 
-export const courses = [
-	{
-		title: 'JavaScript',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F35ca3db9-fb43-4f12-bd48-8b08a503db09-kilwwj.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 179,
-		currentPrice: 79,
-		level: 'Beginner',
-	},
-	{
-		title: 'ReactJS',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa8573b7c-95b2-4459-8414-8eacde874b0a-kilwdl.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 159,
-		currentPrice: 59,
-		level: 'Intermidate',
-	},
-	{
-		title: 'VueJS',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fbddfc919-2260-46dd-a078-b956bd9a377c-kilwcq.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 129,
-		currentPrice: 29,
-		level: 'Intermidate',
-	},
-	{
-		title: 'Telegram BOT',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F1662922d-b61d-401b-aa1a-693a6231d8a0-kilw9a.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 209,
-		currentPrice: 109,
-		level: 'Intermidate',
-	},
-	{
-		title: 'React Native',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F27f17594-ae28-4fe1-86ce-964a5c89c78d-kilw7k.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 129,
-		currentPrice: 29,
-		level: 'Intermidate',
-	},
-	{
-		title: 'Foundation',
-		previewImage:
-			'https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fbcdfb541-3300-430f-b8b2-ff0fb57df056-kilw6p.png&w=1920&q=75',
-		author: {
-			image:
-				'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
-			name: 'Chris Impley',
-		},
-		oldPrice: 209,
-		currentPrice: 109,
-		level: 'Intermidate',
-	},
-]
-
 export const categories = [
 	{
 		icon: '/assets/categories/digital-marketing.svg',
@@ -169,28 +86,27 @@ export const categories = [
 
 export const instructors = [
 	{
-		name: 'Chris Impley',
+		name: 'Elon Musk',
 		image:
-			'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FKmuGvX9oRjYkG3bzttvc&w=1920&q=75',
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Elon_Musk_Colorado_2022_%28cropped2%29.jpg/800px-Elon_Musk_Colorado_2022_%28cropped2%29.jpg',
+		job: 'Designer',
+	},
+	{
+		name: 'Bill Gates',
+		image:
+			'https://assets.bbhub.io/dotorg/sites/64/2023/09/BillGates-Headshot-2022.jpg',
 		job: 'Web Developer',
 	},
 	{
-		name: 'Thomas Winter',
+		name: 'GigaChad',
 		image:
-			'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FdT22spgATpzG10VG3TSA&w=3840&q=75',
-		job: 'Photographer',
-	},
-	{
-		name: 'Emma Watson',
-		image:
-			'https://blog.sammi.app/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FmhvJXIm9QuykyIp3bm4Q&w=3840&q=75',
-		job: 'Digital Marketer',
-	},
-	{
-		name: 'John Doe',
-		image:
-			'https://static.independent.co.uk/2023/05/01/11/be5fda0ecbee4f69e504b721f23a0608Y29udGVudHNlYXJjaGFwaSwxNjgzMDIyNTM1-2.71789316.jpg?quality=75&width=990&crop=3%3A2%2Csmart&auto=webp',
+			'https://media.printables.com/media/prints/609705/images/4843766_f3a15f19-e7ee-4661-b553-2533084ac8fa_dcb27d2e-db17-433d-8f60-1d129843482d/th-387312948.png',
 		job: 'Designer',
+	},
+	{
+		name: 'Asker',
+		image: '/assets/images/ask.jpg',
+		job: 'Digital Marketer',
 	},
 ]
 

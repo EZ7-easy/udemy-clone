@@ -14,7 +14,7 @@ async function Page() {
 
 	return (
 		<>
-			<Header title='Settings' description='Manage your account settings.' />
+			<Header title='Settings' description='Manage your account settings' />
 			<Separator className='my-3 bg-muted-foreground' />
 			<Tabs defaultValue='profile'>
 				<TabsList>

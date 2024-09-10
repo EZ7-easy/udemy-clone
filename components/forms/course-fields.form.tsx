@@ -27,12 +27,12 @@ import { createCourse } from '@/actions/course.action'
 import { toast } from 'sonner'
 import { ChangeEvent, useState } from 'react'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import { storage } from '@/lib/firebase'
 import { ImageDown } from 'lucide-react'
 import { Dialog, DialogContent } from '../ui/dialog'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@clerk/nextjs'
-import { storage } from '@/lib/firebase'
 import { v4 as uuidv4 } from 'uuid'
 
 function CourseFieldsForm() {

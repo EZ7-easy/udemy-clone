@@ -8,8 +8,7 @@ interface Props {
 	pageNumber: number
 	isNext: boolean
 }
-
-function Pagination({ pageNumber, isNext }: Props) {
+function Pagination({ isNext, pageNumber }: Props) {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 

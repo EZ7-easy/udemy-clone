@@ -28,6 +28,7 @@ export async function generateStaticParams() {
 export const metadata: Metadata = {
 	title: 'Startup Praktikum - Next.js',
 	description: "Startup Praktikum's Next.js project",
+	icons: { icon: '/logo.svg' },
 }
 
 interface Props extends ChildProps {

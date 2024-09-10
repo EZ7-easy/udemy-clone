@@ -36,10 +36,7 @@ export const getCourses = async (params: GetCoursesParams) => {
 			.skip(skipAmount)
 			.limit(pageSize)
 
-		const totalCourses = await Course.find({
-			instructor: _id,
-		}).countDocuments()
-
+		const totalCourses = await Course.find({ instructor: _id }).countDocuments()
 		const isNext = totalCourses > skipAmount + courses.length
 
 		return { courses, isNext, totalCourses }
@@ -206,6 +203,6 @@ export const getAllCourses = async (params: GetAllCoursesParams) => {
 
 		return { courses, isNext, totalCourses }
 	} catch (error) {
-		throw new Error('Something went wrong while getting all courses!')
+		throw new Error('Something went wrong!')
 	}
 }

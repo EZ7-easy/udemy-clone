@@ -31,7 +31,7 @@ function AllCourses({ result }: Props) {
 
 	const page = searchParams.get('page')
 
-	const { courses, totalCourses, isNext } = result
+	const { courses, isNext, totalCourses } = result
 
 	const onUpdateParams = (value: string) => {
 		const newUrl = formUrlQuery({

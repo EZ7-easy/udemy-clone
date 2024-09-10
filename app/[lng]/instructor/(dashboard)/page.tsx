@@ -36,11 +36,9 @@ async function Page() {
 			/>
 
 			<div className='mt-4 grid grid-cols-3 gap-4'>
-				{result.courses
-					.map(course => (
-						<InstructorCourseCard key={course.title} course={course} />
-					))
-					.slice(0, 3)}
+				{result.courses.map(course => (
+					<InstructorCourseCard key={course.title} course={course} />
+				))}
 			</div>
 
 			<Header title='Reviews' description='Here are your latest reviews' />

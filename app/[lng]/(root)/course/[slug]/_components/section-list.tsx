@@ -1,5 +1,4 @@
 import { ISection } from '@/app.types'
-
 import {
 	AccordionContent,
 	AccordionItem,
@@ -12,7 +11,7 @@ import LessonList from './lesson-list'
 function SectionList(section: ISection) {
 	return (
 		<AccordionItem value={section.title} className='mt-1 border-none'>
-			<AccordionTrigger className=' flex w-full items-center justify-between bg-primary p-4 hover:no-underline'>
+			<AccordionTrigger className='accordion-course flex w-full items-center justify-between bg-primary p-4 hover:no-underline'>
 				<div className='flex items-center gap-2'>
 					<ChevronsUpDown strokeWidth={1.75} className='size-4' />
 					<div className='text-left font-space-grotesk text-[14px] font-semibold'>

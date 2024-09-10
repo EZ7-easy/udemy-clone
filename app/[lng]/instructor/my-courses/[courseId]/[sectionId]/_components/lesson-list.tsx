@@ -10,19 +10,18 @@ interface Props {
 	index: number
 	onStartEdit: () => void
 }
-
 function LessonList({ index, lesson, onStartEdit }: Props) {
 	const pathname = usePathname()
 
 	const onDelete = () => {
-		const isConfirmed = confirm('Are you sure you want to delete this lesson?')
-		if (isConfirmed) {
+		const isConfimed = confirm('Are you sure you want to delete this lesson?')
+		if (isConfimed) {
 			const promise = deleteLesson(lesson._id, pathname)
 
 			toast.promise(promise, {
-				loading: 'Deleting lesson...',
-				success: 'Lesson deleted successfully',
-				error: 'Failed to delete lesson',
+				loading: 'Loading...',
+				success: 'Successfully deleted!',
+				error: 'Something went wrong!',
 			})
 		}
 	}
