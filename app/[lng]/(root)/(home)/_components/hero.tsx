@@ -39,11 +39,11 @@ function Hero() {
 				</div>
 
 				<Image
-					src={'/assets/images/banner.png'}
+					src={'/assets/hero.png'}
 					alt='hero'
-					width={600}
-					height={600}
-					className='self-center  object-cover'
+					width={520}
+					height={520}
+					className='self-end object-cover'
 				/>
 			</div>
 

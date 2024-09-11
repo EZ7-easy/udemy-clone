@@ -263,7 +263,7 @@ export const purchaseCourse = async (course: string, clerkId: string) => {
 		if (checkCourse.purchases.length > 0)
 			return JSON.parse(JSON.stringify({ status: 200 }))
 
-		const purchase = await Purchase.create({ course, user: user._id })
+		const purchase = await Purchase.create({ user: user._id, course })
 
 		await Course.findByIdAndUpdate(course, {
 			$push: { purchases: purchase._id },

@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react'
 import ReactStars from 'react-stars'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { reviewSchema } from '@/lib/validation'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Textarea } from '../ui/textarea'
 import { Button } from '../ui/button'
@@ -34,6 +34,7 @@ function ReviewModal() {
 	const onSubmit = async (values: z.infer<typeof reviewSchema>) => {
 		startLoading()
 		const data = { ...values, rating }
+
 		let promise
 		if (review) {
 			promise = updateReview({ ...data, _id: review._id })
@@ -45,8 +46,8 @@ function ReviewModal() {
 
 		toast.promise(promise, {
 			loading: 'Loading...',
-			success: 'Review created!',
-			error: 'Error creating review!',
+			success: 'Review created',
+			error: 'Error creating review',
 		})
 	}
 

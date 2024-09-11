@@ -13,14 +13,14 @@ import {
 import { GrCertificate } from 'react-icons/gr'
 import { BiCategory } from 'react-icons/bi'
 import { useState } from 'react'
-import { useAuth } from '@clerk/nextjs'
 import { purchaseCourse } from '@/actions/course.action'
+import { useAuth } from '@clerk/nextjs'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import FillLoading from '@/components/shared/fill-loading'
 
 function Description(course: ICourse) {
-	const [isLoading, setIsloading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const { userId } = useAuth()
 	const t = useTranslate()
@@ -28,10 +28,10 @@ function Description(course: ICourse) {
 	const { lng } = useParams()
 
 	const onPurchase = async () => {
-		setIsloading(true)
+		setIsLoading(true)
 		const promise = purchaseCourse(course._id, userId!)
 			.then(() => router.push(`/${lng}/dashboard/${course._id}`))
-			.catch(() => setIsloading(false))
+			.catch(() => setIsLoading(false))
 
 		toast.promise(promise, {
 			loading: t('loading'),

@@ -52,7 +52,7 @@ function RootLayout({ children, params: { lng } }: Props) {
 						disableTransitionOnChange
 					>
 						<Toaster position='top-center' />
-						{children}
+						<div>{children}</div>
 					</ThemeProvider>
 				</body>
 			</html>

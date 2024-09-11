@@ -18,7 +18,7 @@ export const createReview = async (
 		const user = await User.findOne({ clerkId })
 		await Review.create({ user: user._id, course, ...data })
 	} catch (error) {
-		throw new Error('Error creating review!')
+		throw new Error('Error creating review')
 	}
 }
 

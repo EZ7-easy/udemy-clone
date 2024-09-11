@@ -5,12 +5,11 @@ import useTranslate from '@/hooks/use-translate'
 import { useAuth } from '@clerk/nextjs'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-
+import Vimeo from '@vimeo/player'
 import { Skeleton } from '@/components/ui/skeleton'
 import { CheckCircle, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import Vimeo from '@vimeo/player'
 import { completeLesson, getNextLesson } from '@/actions/lesson.action'
 import { toast } from 'sonner'
 
@@ -39,6 +38,7 @@ function VideoLesson({ lesson }: Props) {
 
 			player.on('ended', onEnd)
 		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lesson, pathname])
 
@@ -70,10 +70,7 @@ function VideoLesson({ lesson }: Props) {
 			)}
 
 			<div
-				className={cn(
-					'max-md:sticky top-[10vh] mt-[10px] z-50',
-					isLoading && 'hidden'
-				)}
+				className={cn('max-md:sticky top-[10vh] z-50', isLoading && 'hidden')}
 				ref={vimeoPlayerRef}
 			/>
 

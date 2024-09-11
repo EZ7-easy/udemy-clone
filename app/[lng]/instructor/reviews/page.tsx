@@ -11,11 +11,7 @@ async function Page({ searchParams }: SearchParamsProps) {
 
 	const page = searchParams.page ? +searchParams.page : 1
 
-	const result = await getReviews({
-		clerkId: userId!,
-		page,
-		pageSize: 6,
-	})
+	const result = await getReviews({ clerkId: userId!, page, pageSize: 6 })
 
 	return (
 		<>

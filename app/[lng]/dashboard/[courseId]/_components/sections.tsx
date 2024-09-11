@@ -113,7 +113,6 @@ interface LessonProps {
 	lesson: ILesson
 	sectionId: string
 }
-
 function LessonList({ lesson, sectionId }: LessonProps) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [mount, setMount] = useState(false)
@@ -147,7 +146,7 @@ function LessonList({ lesson, sectionId }: LessonProps) {
 				'mx-auto mt-2 flex h-12 w-[calc(100%-12px)] items-center justify-between gap-x-2 rounded-none p-0 px-2 text-sm',
 				lessonId === lesson._id && 'bg-secondary'
 			)}
-			variant='ghost'
+			variant={'ghost'}
 		>
 			<Link
 				href={`/dashboard/${courseId}/${lesson._id}?s=${sectionId}`}

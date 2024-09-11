@@ -31,7 +31,7 @@ async function Page() {
 					Icon={PiStudent}
 				/>
 				<StatisticsCard
-					label='Total reviews'
+					label='Reviews'
 					value={formatAndDivideNumber(totalReviews)}
 					Icon={MessageSquare}
 				/>
