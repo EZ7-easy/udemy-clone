@@ -13,10 +13,12 @@ import {
 import { GrCertificate } from 'react-icons/gr'
 import { BiCategory } from 'react-icons/bi'
 import { useState } from 'react'
-// import { useAuth } from '@clerk/nextjs'
+import { useAuth } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/hooks/use-cards'
 import Link from 'next/link'
+import { toast } from 'sonner'
+import { addWishlistCourse } from '@/actions/course.action'
 
 interface Props {
 	course: ICourse
@@ -25,7 +27,7 @@ interface Props {
 function Description({ course, isPurchase }: Props) {
 	const [isLoading, setIsLoading] = useState(false)
 
-	// const { userId } = useAuth()
+	const { userId } = useAuth()
 	const t = useTranslate()
 	const router = useRouter()
 	const { addToCart } = useCart()
@@ -34,6 +36,21 @@ function Description({ course, isPurchase }: Props) {
 		setIsLoading(true)
 		addToCart(course)
 		router.push('/shopping/cart')
+	}
+
+	const onAdd = () => {
+		if (!userId) return toast.error('Please Sign Up first')
+		setIsLoading(true)
+
+		const promise = addWishlistCourse(course._id, userId!).finally(() =>
+			setIsLoading(false)
+		)
+
+		toast.promise(promise, {
+			loading: t('loading'),
+			success: t('successfully'),
+			error: `${t('alreadyAdded')} Wishlist!`,
+		})
 	}
 
 	return (
@@ -73,6 +90,7 @@ function Description({ course, isPurchase }: Props) {
 				className='relative mt-2 w-full font-bold'
 				variant={'outline'}
 				disabled={isLoading}
+				onClick={onAdd}
 			>
 				{t('addWishlist')}
 			</Button>
