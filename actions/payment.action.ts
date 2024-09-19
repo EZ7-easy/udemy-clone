@@ -25,8 +25,7 @@ export const payment = async (
 
 		return paymentIntent.client_secret
 	} catch (error) {
-		const result = error as Error
-		throw new Error(result.message)
+		throw new Error("Couldn't process payment")
 	}
 }
 
@@ -36,7 +35,6 @@ export const retrievePayment = async (pi: string) => {
 			expand: ['payment_method'],
 		})
 	} catch (error) {
-		const result = error as Error
-		throw new Error(result.message)
+		throw new Error("Couldn't retrieve payment")
 	}
 }
