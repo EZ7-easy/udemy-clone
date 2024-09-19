@@ -24,18 +24,22 @@ function CheckoutElement({ cards }: Props) {
 	return (
 		<div className='container mx-auto mt-12 max-w-6xl'>
 			<div className='grid grid-cols-3 gap-2 max-md:grid-cols-1'>
-				<Card className='relative col-span-2 bg-gradient-to-t from-secondary to-background'>
-					<CardContent className='py-4'>
-						<h1 className='font-space-grotesk text-2xl font-bold'>
-							{t('checkout')}
-						</h1>
-						<p className='text-sm text-muted-foreground'>{t('fillDetails')}</p>
+				<div className='col-span-2'>
+					<Card className='relative bg-gradient-to-t from-secondary to-background'>
+						<CardContent className='py-4'>
+							<h1 className='font-space-grotesk text-2xl font-bold'>
+								{t('checkout')}
+							</h1>
+							<p className='text-sm text-muted-foreground'>
+								{t('fillDetails')}
+							</p>
 
-						<Elements stripe={stripePromise}>
-							<Checkout cards={cards} />
-						</Elements>
-					</CardContent>
-				</Card>
+							<Elements stripe={stripePromise}>
+								<Checkout cards={cards} />
+							</Elements>
+						</CardContent>
+					</Card>
+				</div>
 
 				<div className='flex flex-col space-y-3'>
 					<Card className='bg-gradient-to-b from-secondary to-background'>
