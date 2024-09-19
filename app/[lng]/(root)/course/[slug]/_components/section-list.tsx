@@ -11,6 +11,7 @@ import useTranslate from '@/hooks/use-translate'
 
 function SectionList(section: ISection) {
 	const t = useTranslate()
+
 	return (
 		<AccordionItem value={section.title} className='mt-1 border-none'>
 			<AccordionTrigger className='accordion-course flex w-full items-center justify-between bg-primary p-4 hover:no-underline'>

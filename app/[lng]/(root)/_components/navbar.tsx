@@ -14,7 +14,7 @@ import useTranslate from '@/hooks/use-translate'
 import Mobile from './mobile'
 import { useParams, usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { useCart } from '@/hooks/use-cards'
+import { useCart } from '@/hooks/use-cart'
 
 function Navbar() {
 	const t = useTranslate()

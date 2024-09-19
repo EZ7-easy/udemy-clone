@@ -1,14 +1,14 @@
-import { translation } from '@/i18n/server'
-import { LngParams } from '@/types'
-import Header from '../../../../components/shared/header'
-import StatisticsCard from '@/components/cards/statistics.card'
-import { Club, MonitorPlay } from 'lucide-react'
-import { GrMoney } from 'react-icons/gr'
-import { auth } from '@clerk/nextjs'
 import { getStudentCourse } from '@/actions/course.action'
 import { getCustomerCards } from '@/actions/customer.action'
-import ProgressCourseCard from '@/components/cards/progress-course.card'
 import CreditCard from '@/components/cards/credit.card'
+import ProgressCourseCard from '@/components/cards/progress-course.card'
+import StatisticsCard from '@/components/cards/statistics.card'
+import Header from '@/components/shared/header'
+import { translation } from '@/i18n/server'
+import { LngParams } from '@/types'
+import { auth } from '@clerk/nextjs'
+import { Club, MonitorPlay } from 'lucide-react'
+import { GrMoney } from 'react-icons/gr'
 
 async function Page({ params }: LngParams) {
 	const { t } = await translation(params.lng)
@@ -54,11 +54,11 @@ async function Page({ params }: LngParams) {
 					))
 					.splice(0, 3)}
 			</div>
+
 			<Header
 				title={t('bankAccounts')}
 				description={t('bankAccountsDescription')}
 			/>
-
 			<div className='mt-4 grid grid-cols-2 gap-8 max-md:grid-cols-1'>
 				{cards
 					.map(card => (

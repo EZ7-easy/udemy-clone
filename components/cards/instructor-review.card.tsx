@@ -12,13 +12,12 @@ import { usePathname } from 'next/navigation'
 import { setFlag } from '@/actions/review.action'
 import { toast } from 'sonner'
 import FillLoading from '../shared/fill-loading'
-import { FaTimes, FaCheck } from 'react-icons/fa'
+import { FaCheck, FaTimes } from 'react-icons/fa'
 
 interface Props {
 	review: IReview
 	isProfile?: boolean
 }
-
 function InstructorReviewCard({ review, isProfile }: Props) {
 	const [isLoading, setIsLoading] = useState(false)
 	const pathname = usePathname()
@@ -63,7 +62,6 @@ function InstructorReviewCard({ review, isProfile }: Props) {
 					</div>
 				</div>
 			</div>
-
 			{isProfile ? (
 				<Button variant={'ghost'} size={'icon'} className='self-start'>
 					{review.isFlag ? (

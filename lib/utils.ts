@@ -4,7 +4,7 @@ import { enUS, ruRU, trTR } from '@clerk/localizations'
 import { uzUZ } from './uz-UZ'
 import qs from 'query-string'
 import { ILesson } from '@/app.types'
-import { enUS as en, uz, ru, tr } from 'date-fns/locale'
+import { enUS as en, uz, tr, ru } from 'date-fns/locale'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))

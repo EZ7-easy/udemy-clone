@@ -16,7 +16,7 @@ function ProgressCourseCard({ course, progress }: Props) {
 	return (
 		<Link href={`/dashboard/${course._id}`}>
 			<div className='rounded-md border bg-background p-2'>
-				<div className='relative h-[250px] w-[100%] max-sm:h-40'>
+				<div className='relative h-40 w-[100%]'>
 					<Image src={course.previewImage} alt={course.title} fill />
 
 					<div className='absolute bottom-0 right-0 flex items-center gap-2 rounded-tl-lg bg-blue-500/50 px-2 py-1'>

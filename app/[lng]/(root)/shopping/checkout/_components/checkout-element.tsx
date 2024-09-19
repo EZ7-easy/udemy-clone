@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { useCart } from '@/hooks/use-cards'
+import { useCart } from '@/hooks/use-cart'
 import useTranslate from '@/hooks/use-translate'
 import Image from 'next/image'
 import { loadStripe } from '@stripe/stripe-js'
@@ -17,7 +17,6 @@ const stripePromise = loadStripe(
 interface Props {
 	cards: ICard[]
 }
-
 function CheckoutElement({ cards }: Props) {
 	const t = useTranslate()
 	const { totalPrice, taxes, carts } = useCart()

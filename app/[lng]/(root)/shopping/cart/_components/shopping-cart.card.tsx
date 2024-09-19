@@ -1,6 +1,6 @@
 import { ICourse } from '@/app.types'
 import { Button } from '@/components/ui/button'
-import { useCart } from '@/hooks/use-cards'
+import { useCart } from '@/hooks/use-cart'
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 

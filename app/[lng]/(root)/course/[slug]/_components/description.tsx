@@ -15,7 +15,7 @@ import { BiCategory } from 'react-icons/bi'
 import { useState } from 'react'
 import { useAuth } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
-import { useCart } from '@/hooks/use-cards'
+import { useCart } from '@/hooks/use-cart'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { addWishlistCourse } from '@/actions/course.action'
@@ -39,7 +39,7 @@ function Description({ course, isPurchase }: Props) {
 	}
 
 	const onAdd = () => {
-		if (!userId) return toast.error('Please Sign Up first')
+		if (!userId) return toast.error('Please Sign Up!')
 		setIsLoading(true)
 
 		const promise = addWishlistCourse(course._id, userId!).finally(() =>
@@ -49,7 +49,7 @@ function Description({ course, isPurchase }: Props) {
 		toast.promise(promise, {
 			loading: t('loading'),
 			success: t('successfully'),
-			error: `${t('alreadyAdded')} Wishlist!`,
+			error: `${t('alreadyAdded')} Whishlist!`,
 		})
 	}
 

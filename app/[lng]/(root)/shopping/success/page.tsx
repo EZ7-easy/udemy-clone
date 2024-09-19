@@ -11,7 +11,6 @@ import Link from 'next/link'
 interface Props extends SearchParamsProps {
 	params: { lng: string }
 }
-
 async function Page({ params, searchParams }: Props) {
 	const payment = await retrievePayment(searchParams.pi!)
 	const { t } = await translation(params.lng)

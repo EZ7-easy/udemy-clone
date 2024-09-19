@@ -3,7 +3,7 @@
 import NoResult from '@/components/shared/no-result'
 import TopBar from '@/components/shared/top-bar'
 import { Card, CardContent } from '@/components/ui/card'
-import { useCart } from '@/hooks/use-cards'
+import { useCart } from '@/hooks/use-cart'
 import useTranslate from '@/hooks/use-translate'
 import ShoppingCartCard from './_components/shopping-cart.card'
 import { Separator } from '@/components/ui/separator'
