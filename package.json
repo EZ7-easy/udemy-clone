@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/localizations": "^1.26.15",
+    "@clerk/localizations": "^1.28.8",
     "@clerk/nextjs": "^4.29.7",
     "@clerk/themes": "^1.7.9",
     "@hello-pangea/dnd": "^16.5.0",
