@@ -46,6 +46,7 @@ function Hero() {
 					width={520}
 					height={520}
 					className='self-end object-cover'
+					fetchPriority='high'
 				/>
 			</div>
 
