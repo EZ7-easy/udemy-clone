@@ -12,7 +12,7 @@ function ShoppingCartCard(item: Props) {
 
 	return (
 		<div className='grid w-full grid-cols-3 gap-4 rounded-md p-4 shadow-md dark:shadow-sm dark:shadow-white max-md:grid-cols-1'>
-			<div className='col-span-2 flex items-center gap-2'>
+			<div className='col-span-2 flex items-center gap-2 max-sm:block max-sm:space-y-2'>
 				<Image
 					src={item.previewImage}
 					alt={item.title}

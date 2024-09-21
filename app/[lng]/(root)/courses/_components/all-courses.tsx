@@ -45,54 +45,56 @@ function AllCourses({ result }: Props) {
 
 	return (
 		<div className='container mx-auto mt-12 max-w-6xl'>
-			<div className='flex items-center justify-between max-md:flex-col max-md:items-start max-md:space-y-2'>
-				<h2 className='max-md:self-end'>
+			<div className='flex items-center justify-between max-md:flex-col max-md:items-start max-md:space-y-2 md:block'>
+				<h2 className='text-center max-md:self-end max-sm:mx-auto max-sm:mb-3 md:mb-3'>
 					{t('result1')}{' '}
 					<span className='font-space-grotesk font-bold'>{totalCourses}</span>{' '}
 					{t('result2')}
 				</h2>
 
-				<div className='flex items-center gap-2'>
+				<div className='flex items-center gap-2 max-sm:block'>
 					<p>{t('sortBy')}</p>
 
-					<Select onValueChange={onUpdateParams}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-r from-secondary to-background'>
-							<SelectValue placeholder={t('filter')} />
-						</SelectTrigger>
-						<SelectContent>
-							{filterCourses.map(item => (
-								<SelectItem key={item.name} value={item.name}>
-									{t(item.label)}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+					<div className='flex items-center gap-1 max-sm:my-2 max-sm:grid max-sm:grid-cols-2 max-sm:gap-2 md:ml-3 md:gap-3'>
+						<Select onValueChange={onUpdateParams}>
+							<SelectTrigger className='w-[120px] bg-gradient-to-r from-secondary to-background'>
+								<SelectValue placeholder={t('filter')} />
+							</SelectTrigger>
+							<SelectContent>
+								{filterCourses.map(item => (
+									<SelectItem key={item.name} value={item.name}>
+										{t(item.label)}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
 
-					<Select onValueChange={onUpdateParams}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-l from-background via-secondary to-background'>
-							<SelectValue placeholder={t('level')} />
-						</SelectTrigger>
-						<SelectContent>
-							{filterLevels.map(item => (
-								<SelectItem key={item.name} value={item.name}>
-									{t(item.label)}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+						<Select onValueChange={onUpdateParams}>
+							<SelectTrigger className='w-[120px] bg-gradient-to-l from-background via-secondary to-background'>
+								<SelectValue placeholder={t('level')} />
+							</SelectTrigger>
+							<SelectContent>
+								{filterLevels.map(item => (
+									<SelectItem key={item.name} value={item.name}>
+										{t(item.label)}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
 
-					<Select onValueChange={onUpdateParams}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-l from-secondary to-background'>
-							<SelectValue placeholder={t('language')} />
-						</SelectTrigger>
-						<SelectContent>
-							{courseLanguage.map(item => (
-								<SelectItem key={item} value={item} className='capitalize'>
-									{item}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+						<Select onValueChange={onUpdateParams}>
+							<SelectTrigger className='w-[120px] bg-gradient-to-l from-secondary to-background'>
+								<SelectValue placeholder={t('language')} />
+							</SelectTrigger>
+							<SelectContent>
+								{courseLanguage.map(item => (
+									<SelectItem key={item} value={item} className='capitalize'>
+										{item}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
+					</div>
 				</div>
 			</div>
 

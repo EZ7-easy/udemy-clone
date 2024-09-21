@@ -13,12 +13,12 @@ function CreditCard({ card }: { card: ICard }) {
 			<CardContent className='relative z-50 flex h-full flex-col justify-between py-4'>
 				<div className='flex items-center justify-between'>
 					<Image src={'/assets/chip.png'} alt='chip' width={50} height={50} />
-					<h1 className='font-space-grotesk text-2xl font-bold capitalize italic'>
+					<h1 className='font-space-grotesk text-2xl font-bold capitalize italic max-md:text-xl'>
 						{card.card.brand}
 					</h1>
 				</div>
 
-				<div className='flex items-center justify-center gap-4 font-space-grotesk text-4xl max-md:text-2xl'>
+				<div className='flex items-center justify-center gap-4 font-space-grotesk text-4xl max-lg:text-2xl max-md:text-lg'>
 					<div>****</div>
 					<div>****</div>
 					<div>****</div>
@@ -28,14 +28,14 @@ function CreditCard({ card }: { card: ICard }) {
 				<div className='flex items-center justify-between'>
 					<div className='flex flex-col'>
 						<h3 className='text-sm font-bold'>{t('cardHolder')}</h3>
-						<p className='font-space-grotesk text-2xl font-bold capitalize max-md:text-xl'>
+						<p className='font-space-grotesk text-2xl font-bold capitalize max-md:text-lg'>
 							{card.billing_details.name}
 						</p>
 					</div>
 
 					<div className='flex flex-col'>
 						<h3 className='text-sm font-bold'>{t('validTill')}</h3>
-						<p className='font-space-grotesk text-2xl font-bold capitalize max-md:text-xl'>
+						<p className='font-space-grotesk text-2xl font-bold capitalize max-md:text-lg'>
 							{card.card.exp_month}/{card.card.exp_year}
 						</p>
 					</div>

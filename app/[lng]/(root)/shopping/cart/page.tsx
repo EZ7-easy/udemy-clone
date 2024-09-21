@@ -111,7 +111,7 @@ function Page() {
 												})}
 											</span>
 											<div className='flex items-center gap-1 opacity-50 transition-all group-hover:opacity-100'>
-												<span>{t('checkout')}</span>
+												<span className='md:hidden'>{t('checkout')}</span>
 												<ArrowRight className='size-4 transition-transform group-hover:translate-x-1' />
 											</div>
 										</Link>

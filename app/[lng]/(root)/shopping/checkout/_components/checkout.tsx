@@ -127,7 +127,7 @@ function Checkout({ cards }: Props) {
 					{cards.map((card, i) => (
 						<div
 							key={card.id}
-							className='flex items-center justify-between border bg-secondary p-4'
+							className='flex items-center justify-between border bg-secondary p-4 max-sm:block max-sm:space-y-2'
 						>
 							<div>
 								<div className='flex items-center gap-2'>

@@ -66,8 +66,8 @@ async function Page({ params: { lng, slug } }: Props) {
 							</CarouselItem>
 						))}
 					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
+					<CarouselPrevious className='max-md:hidden max-sm:hidden' />
+					<CarouselNext className='max-md:hidden max-sm:hidden' />
 				</Carousel>
 			</div>
 		</>
