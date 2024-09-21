@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/carousel'
 import { companies } from '@/constants'
 import useTranslate from '@/hooks/use-translate'
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 import Autoplay from 'embla-carousel-autoplay'
 
@@ -38,13 +38,13 @@ function Hero() {
 					</div>
 				</div>
 
-				<Image
+				{/* <Image
 					src={'/assets/hero.png'}
 					alt='hero'
 					width={520}
 					height={520}
 					className='self-end object-cover'
-				/>
+				/> */}
 			</div>
 
 			<div className='w-full bg-secondary'>
