@@ -17,7 +17,7 @@ function Sidebar() {
 	const t = useTranslate()
 
 	return (
-		<div className='fixed inset-y-0 left-0 w-[400px] border-l bg-gradient-to-b from-background to-secondary p-4 max-lg:w-20 max-lg:px-2 max-md:w-20 max-md:px-2'>
+		<div className='fixed inset-y-0 left-0 w-[400px] border-l bg-gradient-to-b from-background to-secondary p-4 max-lg:mt-[80px] max-lg:w-20 max-lg:px-2 max-md:mt-[80px] max-md:w-20'>
 			<div className='flex items-center justify-between max-lg:hidden max-md:hidden'>
 				<Logo />
 

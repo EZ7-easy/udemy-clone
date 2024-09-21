@@ -35,7 +35,7 @@ function GlobalSearch() {
 	const debounceSearch = debounce(handleSearch, 300)
 
 	return (
-		<div className='search-box'>
+		<div className='search-box mb-4'>
 			<Button size={'icon'} variant={'ghost'} className='btn-search'>
 				<Search />
 			</Button>
