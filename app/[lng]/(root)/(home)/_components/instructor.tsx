@@ -12,7 +12,7 @@ function Instructor() {
 
 	return (
 		<div className='container mx-auto max-w-6xl py-12'>
-			<div className='flex items-center justify-between'>
+			<div className='items-center justify-between max-sm:grid  max-sm:grid-cols-1 md:flex'>
 				<div className='flex flex-col space-y-1'>
 					<h1 className='font-space-grotesk text-3xl font-bold'>
 						{t('learnInstructors')}
@@ -22,7 +22,7 @@ function Instructor() {
 					</p>
 				</div>
 
-				<div className='flex items-center gap-1 self-end'>
+				<div className='flex items-center gap-1 self-end max-sm:mt-3'>
 					<Button variant={'secondary'}>
 						<span>{t('viewAll')}</span>
 						<MoveUpRight className='ml-2 size-5 font-bold' />

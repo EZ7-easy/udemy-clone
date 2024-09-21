@@ -46,7 +46,7 @@ function FeaturedCourses({ courses }: Props) {
 					</p>
 				</div>
 
-				<div className='flex items-center gap-1 self-end max-md:mt-4 max-md:w-full max-md:rounded-full max-md:bg-primary max-md:p-2'>
+				<div className='grid items-center gap-1 self-end max-md:mt-4 max-md:w-full max-md:rounded-full max-md:p-2 max-sm:grid-cols-2 md:grid-cols-4'>
 					{filterCourses.map(item => (
 						<Button
 							key={item.name}
