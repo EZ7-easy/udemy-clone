@@ -39,14 +39,11 @@ function Hero() {
 				</div>
 
 				<Image
-					src={
-						'https://www.pngplay.com/wp-content/uploads/13/Programmer-PNG-Free-File-Download.png'
-					}
+					src={'/assets/hero.png'}
 					alt='hero'
 					width={520}
 					height={520}
 					className='self-end object-cover'
-					fetchPriority='high'
 				/>
 			</div>
 
