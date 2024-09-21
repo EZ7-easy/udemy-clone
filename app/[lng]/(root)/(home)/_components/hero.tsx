@@ -39,7 +39,9 @@ function Hero() {
 				</div>
 
 				<Image
-					src={'/assets/hero.png'}
+					src={
+						'https://www.pngplay.com/wp-content/uploads/13/Programmer-PNG-Free-File-Download.png'
+					}
 					alt='hero'
 					width={520}
 					height={520}
