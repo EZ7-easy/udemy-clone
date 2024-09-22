@@ -17,7 +17,7 @@ function NoInstructor() {
 
 				<NoResult
 					title='Kompyuter orqali kiring!'
-					description='Instructor panelga Telefon orqali kirish mumkin emas'
+					description='Instructor va Admin panellarga Telefon orqali kirish mumkin emas'
 				/>
 				<div className='mx-auto w-[180px]'>
 					<Button size={'icon'} className='bg-primary px-[90px] py-1'>

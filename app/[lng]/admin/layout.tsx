@@ -1,6 +1,7 @@
 import { ChildProps } from '@/types'
 import Navbar from '@/components/shared/navbar'
 import Sidebar from '@/components/shared/sidebar'
+import NoInstructor from '@/components/shared/no-instructor'
 
 function Layout({ children }: ChildProps) {
 	return (
@@ -14,6 +15,8 @@ function Layout({ children }: ChildProps) {
 					</div>
 				</main>
 			</div>
+
+			<NoInstructor />
 		</div>
 	)
 }
