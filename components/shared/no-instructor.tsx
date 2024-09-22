@@ -1,5 +1,5 @@
 import NoResult from '@/components/shared/no-result'
-import Mobile from '../../(root)/_components/mobile'
+import Mobile from '../../app/[lng]/(root)/_components/mobile'
 import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
