@@ -289,6 +289,7 @@ export const profileNavLinks = [
 	{ label: 'wishlist', route: '/profile/wishlist', icon: ListVideo },
 	{ label: 'creditCards', route: '/profile/credit-cards', icon: CreditCard },
 	{ label: 'reviews', route: '/profile/reviews', icon: MessageSquareMore },
+	{ label: 'Notifications', route: '/admin/notifications', icon: Bell },
 	{ label: 'settings', route: '/profile/settings', icon: Settings2 },
 ]
 
@@ -297,5 +298,5 @@ export const adminNavLinks = [
 	{ label: 'All courses', route: '/admin/all-courses', icon: MonitorPlay },
 	{ label: 'Instructors', route: '/admin/instructors', icon: User },
 	{ label: 'Reviews', route: '/admin/reviews', icon: MessageSquareMore },
-	{ label: 'Notifications', route: '/admin/notifications', icon: Bell },
+	{ label: 'Notifications', route: '/profile/notifications', icon: Bell },
 ]

@@ -1,6 +1,5 @@
 import { ChildProps } from '@/types'
 import Sidebar from './_components/sidebar'
-
 import Logo from '@/components/shared/logo'
 import { Separator } from '@/components/ui/separator'
 import MobileNavbar from './_components/mobile-navbar'
