@@ -133,3 +133,8 @@ export interface INotification {
 	isRead: boolean
 	createdAt: string
 }
+
+export interface IMessage {
+	role: string
+	content: string
+}
