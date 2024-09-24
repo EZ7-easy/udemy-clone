@@ -21,7 +21,11 @@ function UserBox() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Avatar className='size-10 cursor-pointer'>
-					<AvatarImage src={user?.picture} className='object-cover' />
+					<AvatarImage
+						src={user?.picture}
+						className='object-cover'
+						area-label='Avatar'
+					/>
 				</Avatar>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
