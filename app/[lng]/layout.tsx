@@ -26,9 +26,27 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-	title: 'Startup Praktikum - Next.js',
-	description: "Startup Praktikum's Next.js project",
+	metadataBase: new URL('https://m1lo0709.uz'),
+	title: 'M1lo praktikum | Dasturlash kurslari',
+	description:
+		"M1lo Praktikum Next.js dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
+	authors: [{ name: 'Bobur Nematov', url: 'https://m1lo0709.uz' }],
 	icons: { icon: '/logo.svg' },
+	openGraph: {
+		title: 'M1lo praktikum | Dasturlash kurslari',
+		description:
+			"M1lo Praktikum Next.js dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
+		type: 'website',
+		url: 'https://m1lo0709.uz',
+		locale: 'uz_UZ',
+		images:
+			'https://i.pinimg.com/736x/d3/39/5a/d3395af0ffd62a571b9e683a7fa3e509.jpg',
+		countryName: 'Uzbekistan',
+		siteName: 'M1lo',
+		emails: 'info@m1lo.uz',
+	},
+	keywords:
+		"Praktikum, Praktikum m1lo, NextJS, NextJS to'liq kurs, NextJS kurs, NextJS dasturlash, Startup, Startup loyiha, Startup sammi, Sammi, Sammi praktikum, Sammi dasturlash, Sammi startup, Sammi kurs, Sammi kurslari, Sammi dasturlash kurslari, Sammi startup kurslari, Sammi startup loyihalari, Sammi startup loyiha, Sammi startup loyihasi, Sammi startup loyihasi dasturlash",
 }
 
 interface Props extends ChildProps {
