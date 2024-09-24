@@ -15,12 +15,14 @@ const useUser = () => {
 			try {
 				const data = await getUser(userId!)
 				data === 'notFound' && onOpen()
+				setUser(data)
 			} catch (error) {
 				setUser(null)
 			}
 		}
 
 		userId && getData()
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
