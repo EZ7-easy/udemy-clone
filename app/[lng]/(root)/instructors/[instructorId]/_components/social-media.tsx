@@ -7,7 +7,7 @@ import { GiWorld } from 'react-icons/gi'
 
 function SocialMedia({ user }: { user: IUser }) {
 	return (
-		<div className='flex gap-2'>
+		<div className='flex gap-2 max-md:grid max-md:grid-cols-2'>
 			<Button
 				size={'sm'}
 				className='font-space-grotesk'

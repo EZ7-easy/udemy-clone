@@ -47,7 +47,7 @@ async function Page({ params, searchParams }: Props) {
 			<TopBar label='singleInstructor' extra={user.fullName} />
 
 			<div className='container mx-auto mt-12 max-w-6xl'>
-				<div className='mt-6 flex items-center gap-6 max-md:flex-col'>
+				<div className='mt-6 flex items-center gap-6 max-md:block max-md:flex-col'>
 					<Image
 						src={user.picture}
 						alt={user.fullName}
@@ -56,7 +56,7 @@ async function Page({ params, searchParams }: Props) {
 						className='rounded-md max-md:self-start'
 					/>
 					<div className='flex flex-1 flex-col space-y-2'>
-						<h2 className='font-space-grotesk text-3xl font-bold'>
+						<h2 className='font-space-grotesk text-3xl font-bold max-md:mt-2'>
 							{user.fullName}
 						</h2>
 						<p className='line-clamp-2 text-muted-foreground'>{user.bio}</p>
