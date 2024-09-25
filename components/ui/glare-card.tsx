@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable tailwindcss/no-custom-classname */
 import { cn } from '@/lib/utils'
 import React, { useRef } from 'react'
