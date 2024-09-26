@@ -3,11 +3,11 @@ import { Card, CardContent } from '../ui/card'
 import { Separator } from '../ui/separator'
 import { ICourse } from '@/app.types'
 import CustomImage from '../shared/custom-image'
-import { GlareCard } from '../ui/glare-card'
+import { BackgroundGradient } from '../ui/background-gradient'
 
 function CourseCard(course: ICourse) {
 	return (
-		<GlareCard>
+		<BackgroundGradient>
 			<Link href={`/course/${course._id}`}>
 				<Card className='group w-full'>
 					<CardContent className='relative h-56 w-full'>
@@ -50,7 +50,7 @@ function CourseCard(course: ICourse) {
 					</div>
 				</Card>
 			</Link>
-		</GlareCard>
+		</BackgroundGradient>
 	)
 }
 
