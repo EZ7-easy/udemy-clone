@@ -10,7 +10,6 @@ import { companies } from '@/constants'
 import useTranslate from '@/hooks/use-translate'
 import Link from 'next/link'
 import Autoplay from 'embla-carousel-autoplay'
-import { IconCloudDemo } from '@/components/cards/icon-cloud'
 
 function Hero() {
 	const t = useTranslate()
@@ -37,10 +36,10 @@ function Hero() {
 						</Link>
 					</div>
 				</div>
-
+				{/* 
 				<div className='self-center'>
 					<IconCloudDemo />
-				</div>
+				</div> */}
 			</div>
 
 			<div className='w-full bg-secondary'>
