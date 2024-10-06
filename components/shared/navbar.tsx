@@ -1,5 +1,4 @@
 import Logo from '@/components/shared/logo'
-import ModeToggle from '@/components/shared/mode-toggle'
 import UserBox from '@/components/shared/user-box'
 import LanguageDropdown from './language-dropdown'
 
@@ -14,7 +13,6 @@ function Navbar({ isProfile }: Props) {
 
 			<div className='flex items-center gap-4'>
 				{isProfile && <LanguageDropdown />}
-				<ModeToggle />
 				<UserBox />
 			</div>
 		</div>
