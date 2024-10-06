@@ -15,7 +15,6 @@ import useTranslate from '@/hooks/use-translate'
 import { AlignCenter, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import GlobalSearch from '../../(root)/_components/global-search'
-import ModeToggle from '@/components/shared/mode-toggle'
 
 function MobileNavbar() {
 	const t = useTranslate()
@@ -49,7 +48,6 @@ function MobileNavbar() {
 							<ShoppingCart />
 						</Button>
 						<GlobalSearch />
-						<ModeToggle />
 					</div>
 				</div>
 			</SheetContent>

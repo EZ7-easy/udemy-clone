@@ -2,7 +2,6 @@
 
 import LanguageDropdown from '@/components/shared/language-dropdown'
 import Logo from '@/components/shared/logo'
-import ModeToggle from '@/components/shared/mode-toggle'
 import UserBox from '@/components/shared/user-box'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -22,7 +21,6 @@ function Sidebar() {
 				<Logo />
 
 				<div className='flex items-center gap-1'>
-					<ModeToggle />
 					<LanguageDropdown />
 					<UserBox />
 				</div>
