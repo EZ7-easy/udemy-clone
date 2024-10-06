@@ -1,7 +1,6 @@
 'use client'
 
 import LanguageDropdown from '@/components/shared/language-dropdown'
-import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -15,7 +14,6 @@ import useTranslate from '@/hooks/use-translate'
 import { AlignCenter, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import GlobalSearch from './global-search'
-import ModeToggle from '@/components/shared/mode-toggle'
 
 function Mobile() {
 	const t = useTranslate()
@@ -29,7 +27,11 @@ function Mobile() {
 			</SheetTrigger>
 			<SheetContent side={'top'}>
 				<SheetHeader>
-					<Logo />
+					{/* <Logo /> */}
+					<div className='text-2xl font-bold'>
+						<span className='mr-2 text-[rgb(210,4,5)]'>IELTS</span>
+						<span className='text-[rgb(7,3,191)]'>SCHOOL</span>
+					</div>
 					<Separator />
 				</SheetHeader>
 				<div className='mt-4 flex flex-col space-y-3'>
@@ -49,7 +51,6 @@ function Mobile() {
 							<ShoppingCart />
 						</Button>
 						<GlobalSearch />
-						<ModeToggle />
 					</div>
 				</div>
 			</SheetContent>

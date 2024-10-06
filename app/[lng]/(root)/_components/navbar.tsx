@@ -1,7 +1,6 @@
 'use client'
 
 import Logo from '@/components/shared/logo'
-import ModeToggle from '@/components/shared/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants'
 import { LogIn, ShoppingCart } from 'lucide-react'
@@ -68,7 +67,6 @@ function Navbar() {
 							</Button>
 						</div>
 						<Mobile />
-						<ModeToggle />
 					</div>
 					<SignedIn>
 						<UserBox />
