@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 		url: 'https://m1lo0709.uz',
 		locale: 'uz_UZ',
 		images:
-			'https://i.pinimg.com/736x/d3/39/5a/d3395af0ffd62a571b9e683a7fa3e509.jpg',
+			'/og-image.png',
 		countryName: 'Uzbekistan',
 		siteName: 'M1lo',
 		emails: 'info@m1lo.uz',

@@ -13,7 +13,7 @@ function Categories() {
 				<h1 className='font-space-grotesk text-3xl font-bold'>
 					{t('topCategories')}
 				</h1>
-				<p className='text-sm text-muted-foreground'>
+				<p className='text-md text-muted-foreground'>
 					{t('topCategoriesDescription')}
 				</p>
 			</div>

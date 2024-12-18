@@ -15,9 +15,6 @@ async function Page() {
 			<Hero />
 			<FeaturedCourses courses={JSON.parse(JSON.stringify(courses))} />
 			<Categories />
-			<Instructor
-				instructors={JSON.parse(JSON.stringify(instructorData.instructors))}
-			/>
 			<LearningJourney />
 		</>
 	)

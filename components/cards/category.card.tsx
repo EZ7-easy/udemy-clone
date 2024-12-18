@@ -4,7 +4,7 @@ import Image from 'next/image'
 function CategoryCard(category: ICategory) {
 	return (
 		<div>
-			<div className='flex h-44 w-full items-center justify-center rounded-md bg-secondary'>
+			<div className='flex h-44 w-full items-center justify-center rounded-md border border-1 mb-3'>
 				<Image
 					src={category.icon}
 					alt={category.label}
@@ -12,7 +12,7 @@ function CategoryCard(category: ICategory) {
 					height={100}
 				/>
 			</div>
-			<h2 className='mt-2 line-clamp-1 font-space-grotesk text-lg'>
+			<h2 className='mt-2 line-clamp-1 font-space-grotesk text-xl font-semibold'>
 				{category.label}
 			</h2>
 		</div>

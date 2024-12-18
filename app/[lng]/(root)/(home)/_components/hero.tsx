@@ -11,13 +11,15 @@ import useTranslate from '@/hooks/use-translate'
 import Link from 'next/link'
 import Autoplay from 'embla-carousel-autoplay'
 import { IconCloudDemo } from '@/components/cards/icon-cloud'
+import { VelocityScroll } from '@/components/magicui/Velocity-scroll'
+import { ScrollBasedVelocityDemo } from '@/components/shared/scroll-velocity'
 
 function Hero() {
 	const t = useTranslate()
 
 	return (
 		<>
-			<div className='container mx-auto grid min-h-[80vh] max-w-6xl grid-cols-2 gap-8 max-md:grid-cols-1 max-md:pt-32'>
+			<div className='container mx-auto grid min-h-[70vh] max-w-6xl grid-cols-2 gap-8 max-md:grid-cols-1 max-md:pt-32'>
 				<div className='flex flex-col space-y-4 self-center'>
 					<h1 className='font-space-grotesk text-5xl font-bold'>
 						{t('heroTitle')}{' '}
@@ -43,24 +45,10 @@ function Hero() {
 				</div>
 			</div>
 
-			<div className='w-full bg-secondary'>
-				<Carousel
-					opts={{ align: 'start', loop: true }}
-					className='container mx-auto w-full max-w-6xl'
-					plugins={[Autoplay({ delay: 2000 })]}
-				>
-					<CarouselContent>
-						{companies.map((Icon, idx) => (
-							<CarouselItem
-								key={idx}
-								className='basis-1/3 md:basis-1/4 lg:basis-1/6'
-							>
-								<Icon className='h-24 w-full text-muted-foreground' />
-							</CarouselItem>
-						))}
-					</CarouselContent>
-				</Carousel>
+			<div className='w-full'>
+				<ScrollBasedVelocityDemo/>
 			</div>
+
 		</>
 	)
 }

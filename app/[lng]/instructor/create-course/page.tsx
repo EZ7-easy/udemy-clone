@@ -1,8 +1,16 @@
 import { Separator } from '@/components/ui/separator'
 import Header from '../../../../components/shared/header'
 import CourseFieldsForm from '@/components/forms/course-fields.form'
+import { auth } from '@clerk/nextjs'
+import { getRole } from '@/actions/user.action'
+import { redirect } from 'next/navigation'
 
-function Page() {
+async function Page() {
+		const { userId } = auth()
+		const user = await getRole(userId!)
+	
+		if (user.role !== 'instructor') return redirect('/')
+
 	return (
 		<>
 			<Header
