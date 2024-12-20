@@ -28,15 +28,15 @@ export async function generateStaticParams() {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://m1lo0709.uz"),
-  title: "M1lo praktikum | Dasturlash kurslari",
+  title: "Talimot.uz | Dasturlash kurslari",
   description:
-    "M1lo Praktikum Next.js dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
+    "Ta'limot.uz - dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
   authors: [{ name: "Bobur Nematov", url: "https://m1lo0709.uz" }],
   icons: { icon: "/logo.svg" },
   openGraph: {
-    title: "M1lo praktikum | Dasturlash kurslari",
+    title: "Ta'limot.uz | Dasturlash kurslari",
     description:
-      "M1lo Praktikum Next.js dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
+      "Ta'limot.uz - dasturlash kurslari, amaliyotlar, startup loyihalar va asosiysi sifatli ta'limdir.",
     type: "website",
     url: "https://m1lo0709.uz",
     locale: "uz_UZ",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     emails: "info@m1lo.uz",
   },
   keywords:
-    "Praktikum, Praktikum m1lo, NextJS, NextJS to'liq kurs, NextJS kurs, NextJS dasturlash, Startup, Startup loyiha, Startup sammi, Sammi, Sammi praktikum, Sammi dasturlash, Sammi startup, Sammi kurs, Sammi kurslari, Sammi dasturlash kurslari, Sammi startup kurslari, Sammi startup loyihalari, Sammi startup loyiha, Sammi startup loyihasi, Sammi startup loyihasi dasturlash",
+    "Ta'limot, Ta'limot.uz , NextJS, NextJS to'liq kurs, NextJS kurs, NextJS dasturlash, Startup, Startup loyiha, Startup Ta'limot, Ta'limot dasturlash kurslari, darsturlash darslari, dasturlash kurslari ",
 };
 
 interface Props extends ChildProps {
