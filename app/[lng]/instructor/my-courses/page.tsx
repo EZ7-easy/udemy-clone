@@ -4,14 +4,9 @@ import { getCourses } from "@/actions/course.action";
 import { auth } from "@clerk/nextjs";
 import { SearchParamsProps } from "@/app.types";
 import Pagination from "@/components/shared/pagination";
-import { getRole } from "@/actions/user.action";
-import { redirect } from "next/navigation";
 
 async function Page({ searchParams }: SearchParamsProps) {
   const { userId } = auth();
-  const user = await getRole(userId!);
-
-  if (user.role !== "instructor") return redirect("/");
   const page = searchParams.page ? +searchParams.page : 1;
 
   const result = await getCourses({ clerkId: userId!, page });
