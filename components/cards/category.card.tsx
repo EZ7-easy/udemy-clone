@@ -4,7 +4,7 @@ import Image from "next/image";
 function CategoryCard(category: ICategory) {
   return (
     <div>
-      <div className="flex h-44 w-full items-center justify-center rounded-md border border-1 mb-3">
+      <div className="flex h-44 w-full items-center justify-center rounded-md border border-spacing-1 mb-3">
         <Image
           src={category.icon}
           alt={category.label}
