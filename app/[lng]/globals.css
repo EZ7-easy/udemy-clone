@@ -3,95 +3,113 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
-		--primary: 217.2 91.2% 59.8%;
-		--primary-foreground: 222.2 47.4% 11.2%;
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 224.3 76.3% 48%;
-	}
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
 }
 
 @layer base {
-	* {
-		@apply border-border;
-	}
-	body {
-		@apply bg-background text-foreground font-roboto;
-	}
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-roboto;
+  }
 }
 
 .accordion-course > svg {
-	@apply hidden;
+  @apply hidden;
 }
 
 /* SEARCH BOX */
 .search-box {
-	width: fit-content;
-	height: fit-content;
-	position: relative;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
 }
 .input-search {
-	background-color: transparent;
-	height: 20px;
-	width: 20px;
-	border-style: none;
-	padding: 10px;
-	outline: none;
-	border-radius: 25px;
-	transition: all 0.5s ease-in-out;
-	padding-right: 40px;
+  background-color: transparent;
+  height: 20px;
+  width: 20px;
+  border-style: none;
+  padding: 10px;
+  outline: none;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  padding-right: 40px;
 }
 .btn-search {
-	position: absolute;
-	right: 0px;
-	pointer-events: painted;
+  position: absolute;
+  right: 0px;
+  pointer-events: painted;
 }
 .btn-search:focus ~ .input-search {
-	width: 300px;
-	height: 35px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+  width: 300px;
+  height: 35px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
 .input-search:focus {
-	width: 300px;
-	height: 35px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-	transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+  width: 300px;
+  height: 35px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
-	border-radius: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-	@apply bg-background;
+  @apply bg-background;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-	background: linear-gradient(129deg, #2b6cb0 0%, #2b6cb0 100%);
+  background: linear-gradient(129deg, #2b6cb0 0%, #2b6cb0 100%);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(129deg, #2b6cb0 0%, #2b6cb0 100%);
+  background: linear-gradient(129deg, #2b6cb0 0%, #2b6cb0 100%);
+}
+
+.spinner {
+  border: 4px solid #f3f3f3; /* Light gray */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
