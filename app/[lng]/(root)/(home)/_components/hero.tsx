@@ -1,8 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import useTranslate from "@/hooks/use-translate";
-import Link from "next/link";
 import { IconCloudDemo } from "@/components/cards/icon-cloud";
 import { ScrollBasedVelocityDemo } from "@/components/shared/scroll-velocity";
 import MainHero from "./main-hero";
