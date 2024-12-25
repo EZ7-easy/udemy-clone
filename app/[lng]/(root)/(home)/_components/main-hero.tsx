@@ -30,7 +30,7 @@ function MainHero() {
   return (
     <div className="flex flex-col space-y-4 self-center text-center sm:text-left">
       <h1
-        className={`font-space-grotesk text-4xl sm:text-5xl font-bold ${
+        className={`font-space-grotesk text-3xl sm:text-5xl font-bold ${
           loading ? "text-white bg-background animate-pulse" : "text-white"
         }`}
       >
