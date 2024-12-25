@@ -31,7 +31,7 @@ export function ScrollBasedVelocityDemo() {
         <VelocityScroll
           text="Ta'limot.uz saytidan sifatli kurslar xarid qiling"
           defaultVelocity={1}
-          className="font-space-grotesk text-center text-4xl font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
+          className="font-space-grotesk text-center text-4xl font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-5xl md:leading-[4rem]"
         />
       )}
     </div>
