@@ -29,9 +29,19 @@ function MainHero() {
 
   return (
     <div className="flex flex-col space-y-4 self-center text-center sm:text-left">
-      <h1 className="font-space-grotesk text-4xl sm:text-5xl font-bold">
+      <h1
+        className={`font-space-grotesk text-4xl sm:text-5xl font-bold ${
+          loading ? "text-white bg-background animate-pulse" : "text-white"
+        }`}
+      >
         {t("heroTitle")}{" "}
-        <span className="text-blue-500">{t("heroTitleSpan")}</span>
+        <span
+          className={`${
+            loading ? "text-blue-700 bg-background" : "text-blue-500"
+          }`}
+        >
+          {t("heroTitleSpan")}
+        </span>
       </h1>
       <p className="text-muted-foreground">{t("heroDescription")}</p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
