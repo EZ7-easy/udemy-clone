@@ -42,8 +42,16 @@ function MainHero() {
         >
           {t("heroTitleSpan")}
         </span>
+        <p
+          className={`${
+            loading
+              ? "text-muted-foreground bg-background mt-5 text-sm"
+              : "text-muted-foreground mt-5 text-sm"
+          }`}
+        >
+          {t("heroDescription")}
+        </p>
       </h1>
-      <p className="text-muted-foreground">{t("heroDescription")}</p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
         <Link href={"/courses"}>
           <Button
